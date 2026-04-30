@@ -7,4 +7,10 @@ Allow: /
 User-agent: Facebot
 Allow: /
 
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
 Sitemap: https://getrawabat.com/sitemap.xml
