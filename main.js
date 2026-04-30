@@ -156,7 +156,7 @@ function validateEnterpriseForm() {
 }
 
 function calculateLeadScore(data) {
-  let score = 35;
+  let score = 68;
 
   if (String(data.name || "").trim()) score += 8;
   if (normalizePhone(data.phone).length >= 8) score += 12;
