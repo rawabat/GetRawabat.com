@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
   <title>ClientFlow by Rawabat | بوت واتساب ذكي لمطاعم الخليج ومصر</title>
   <meta name="description" content="ClientFlow by Rawabat يحوّل واتساب مطعمك إلى AI Sales Agent يرد فورًا، يستقبل الطلبات، يعرض المنيو، يتابع العملاء، ويزيد الطلبات 24/7." />
   <meta name="keywords" content="بوت واتساب مطاعم الخليج, بوت واتساب مطاعم مصر, نظام طلبات واتساب, أتمتة مطاعم, واتساب بزنس مطاعم, ClientFlow, Rawabat" />
@@ -34,83 +35,548 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Cairo','Inter','sans-serif'], inter: ['Inter','sans-serif'] }, colors: { gold: '#d4af37', teal: '#00d4aa' } } } }
-  </script>
+  <link rel="stylesheet" href="style.css" />
 
-  <style>
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:#050508;color:#f4f1ea;font-family:Cairo,sans-serif;overflow-x:hidden;padding-bottom:86px;-webkit-font-smoothing:antialiased} a{text-decoration:none;color:inherit} img{display:block;max-width:100%;height:auto} ::selection{background:rgba(212,175,55,.35);color:#fff}
-    .text-gold{background:linear-gradient(135deg,#d4af37,#fff1bd,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.text-teal{background:linear-gradient(135deg,#00d4aa,#8dffe8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .glass{background:rgba(10,10,16,.84);border:1px solid rgba(212,175,55,.12);backdrop-filter:blur(20px)}.card{background:linear-gradient(145deg,rgba(10,10,16,.94),rgba(17,17,24,.9));border:1px solid rgba(212,175,55,.10);box-shadow:0 24px 80px rgba(0,0,0,.25)}.card-hover{transition:.35s}.card-hover:hover{border-color:rgba(212,175,55,.30);transform:translateY(-4px)}
-    .btn-gold{background:linear-gradient(135deg,#d4af37,#b9852d);color:#050508;font-weight:900;box-shadow:0 18px 50px rgba(212,175,55,.25);transition:.3s}.btn-gold:hover{transform:translateY(-2px);box-shadow:0 24px 70px rgba(212,175,55,.38)}.btn-teal{background:linear-gradient(135deg,#00d4aa,#00a884);color:#050508;font-weight:900;box-shadow:0 18px 50px rgba(0,212,170,.22);transition:.3s}.btn-teal:hover{transform:translateY(-2px);box-shadow:0 24px 70px rgba(0,212,170,.34)}.btn-outline{border:1px solid rgba(212,175,55,.32);color:#f4f1ea;transition:.3s}.btn-outline:hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.65)}
-    .tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(212,175,55,.18);background:rgba(212,175,55,.07);color:#e9c75d;border-radius:999px;padding:.45rem .85rem;font-size:.78rem;font-weight:800}.tag-teal{border-color:rgba(0,212,170,.20);background:rgba(0,212,170,.07);color:#00d4aa}.orb{filter:blur(110px);opacity:.55;pointer-events:none}
-    .phone-frame{background:linear-gradient(145deg,#15151d,#060608);border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 0 0 8px rgba(255,255,255,.03),0 30px 100px rgba(0,0,0,.55)}.msg{max-width:82%;border-radius:18px;padding:12px 14px;font-size:14px;line-height:1.7}.msg-in{background:rgba(255,255,255,.08);color:#f4f1ea;border-top-right-radius:5px}.msg-out{background:rgba(0,212,170,.18);color:#eafff9;border-top-left-radius:5px;border:1px solid rgba(0,212,170,.18);margin-right:auto}
-    .reveal{opacity:0;transform:translateY(24px);transition:.75s cubic-bezier(.2,.8,.2,1)}.reveal.show{opacity:1;transform:translateY(0)}.media-card{overflow:hidden;border-radius:26px;border:1px solid rgba(212,175,55,.10);background:rgba(10,10,16,.86);box-shadow:0 24px 80px rgba(0,0,0,.25)}
-    .lead-input,.lead-select,.lead-textarea{width:100%;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.28);color:#f4f1ea;padding:15px 16px;outline:none;transition:.25s}.lead-input:focus,.lead-select:focus,.lead-textarea:focus{border-color:rgba(0,212,170,.65);box-shadow:0 0 0 4px rgba(0,212,170,.08)}.lead-select option{background:#0a0a10;color:#f4f1ea}.lead-label{display:block;color:#b9b5c3;font-size:13px;font-weight:800;margin-bottom:8px}.lead-help{color:#7f7b89;font-size:12px;margin-top:7px}.lead-error{display:none;color:#ff9b9b;font-size:12px;margin-top:7px}.field-invalid .lead-input,.field-invalid .lead-select,.field-invalid .lead-textarea{border-color:rgba(255,155,155,.75)}.field-invalid .lead-error{display:block}.lead-success{display:none;border:1px solid rgba(0,212,170,.25);background:rgba(0,212,170,.08);color:#dffdf6;border-radius:22px;padding:16px;margin-top:18px;text-align:right}.lead-meter{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.lead-meter-fill{height:100%;width:35%;border-radius:999px;background:linear-gradient(135deg,#d4af37,#00d4aa);transition:.35s}.mini-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini-proof div{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);border-radius:18px;padding:14px;text-align:center}.mini-proof strong{display:block;color:#00d4aa;font-size:20px;font-family:Inter,sans-serif}
-    .whatsapp-float{position:fixed;left:24px;bottom:100px;z-index:60;width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 15px 45px rgba(37,211,102,.35);transition:.25s}.whatsapp-float:hover{transform:scale(1.07)}.sticky-cta{position:fixed;inset:auto 0 0 0;z-index:70;border-top:1px solid rgba(212,175,55,.14);background:rgba(5,5,8,.92);backdrop-filter:blur(18px);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.sticky-inner{max-width:880px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px}.sticky-copy{color:#9b98a5;font-size:13px;font-weight:800;line-height:1.5}
-    @media(max-width:768px){body{padding-bottom:116px}.whatsapp-float{width:56px;height:56px;left:16px;bottom:116px}.mobile-hide{display:none}.sticky-inner{grid-template-columns:1fr}.mini-proof{grid-template-columns:1fr}}
-  </style>
-
-  <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','910167190291826');fbq('track','PageView');
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ClientFlow by Rawabat",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "نظام ذكاء اصطناعي لأتمتة طلبات واتساب لمطاعم الخليج ومصر",
+      "offers": {
+        "@type": "Offer",
+        "price": "79",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Rawabat",
+        "url": "https://getrawabat.com"
+      }
+    }
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=910167190291826&ev=PageView&noscript=1" /></noscript>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ClientFlow by Rawabat","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"نظام ذكاء اصطناعي لأتمتة طلبات واتساب لمطاعم الخليج ومصر","offers":{"@type":"Offer","price":"79","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Rawabat","url":"https://getrawabat.com"}}</script>
 </head>
-<body>
-  <div class="fixed inset-0 -z-10"><div class="absolute inset-0 bg-[radial-gradient(circle_at_25%_10%,rgba(0,212,170,.10),transparent_34%),radial-gradient(circle_at_70%_20%,rgba(212,175,55,.10),transparent_33%),radial-gradient(circle_at_50%_90%,rgba(123,104,238,.08),transparent_38%)]"></div><div class="absolute inset-0 opacity-[.035]" style="background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);background-size:56px 56px"></div></div>
 
-  <nav id="nav" class="fixed top-0 inset-x-0 z-50 py-5 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3" aria-label="Rawabat"><div class="w-11 h-11 rounded-2xl overflow-hidden bg-gradient-to-br from-teal to-gold flex items-center justify-center"><img src="logo.jpeg" alt="Rawabat" class="w-full h-full object-cover" onerror="this.outerHTML='<span class=&quot;text-black font-black&quot;>R</span>'" /></div><div class="leading-tight"><div class="font-inter text-xl font-black tracking-tight">Rawabat</div><div class="text-[11px] text-slate-500">ClientFlow Restaurants</div></div></a>
-      <div class="hidden lg:flex items-center gap-8 text-sm text-slate-400 font-semibold"><a href="#problem" class="hover:text-gold">المشكلة</a><a href="#roi" class="hover:text-gold">الأرقام</a><a href="#proof" class="hover:text-gold">النظام</a><a href="#pricing" class="hover:text-gold">الباقات</a><a href="#lead-form" class="hover:text-gold">النموذج</a></div>
-      <div class="hidden md:flex items-center gap-3"><a onclick="trackLead('whatsapp_nav')" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer" class="btn-outline px-5 py-2.5 rounded-full text-sm font-bold">واتساب مباشر</a><a onclick="trackContact('nav_form')" href="#lead-form" class="btn-gold px-5 py-2.5 rounded-full text-sm">ابدأ الآن</a></div>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <div class="site-bg__gradients"></div>
+    <div class="site-bg__grid"></div>
+  </div>
+
+  <nav id="nav" class="site-nav" aria-label="القائمة الرئيسية">
+    <div class="container nav__inner">
+      <a href="#home" class="brand" aria-label="Rawabat ClientFlow الصفحة الرئيسية">
+        <span class="brand__logo-wrap">
+          <img src="logo.jpeg" alt="Rawabat" class="brand__logo" />
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Rawabat</span>
+          <span class="brand__subtitle">ClientFlow Restaurants</span>
+        </span>
+      </a>
+
+      <div class="nav__links" aria-label="روابط الصفحة">
+        <a href="#problem">المشكلة</a>
+        <a href="#roi">الأرقام</a>
+        <a href="#proof">النظام</a>
+        <a href="#pricing">الباقات</a>
+        <a href="#lead-form">النموذج</a>
+      </div>
+
+      <div class="nav__actions">
+        <a class="btn btn--outline" data-track-lead="whatsapp_nav" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">واتساب مباشر</a>
+        <a class="btn btn--gold" data-track-contact="nav_form" href="#lead-form">ابدأ الآن</a>
+      </div>
     </div>
   </nav>
 
-  <main id="home" class="pt-28 md:pt-36">
-    <section class="relative overflow-hidden">
-      <div class="absolute top-20 right-8 w-80 h-80 bg-teal/20 rounded-full orb"></div><div class="absolute bottom-12 left-12 w-96 h-96 bg-gold/15 rounded-full orb"></div>
-      <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[78vh]">
-        <div class="text-center lg:text-right reveal"><div class="flex justify-center lg:justify-start flex-wrap gap-3 mb-7"><span class="tag tag-teal">AI Sales Agent للمطاعم</span><span class="tag">الخليج ومصر</span></div><h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.08] tracking-tight mb-7">كل رسالة <span class="text-teal">واتساب</span> ممكن تكون طلب</h1><p class="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-9">ClientFlow by Rawabat يحوّل واتساب مطعمك إلى AI Sales Agent يرد فورًا، يعرض المنيو، يقفل الطلب، ويتابع العملاء المترددين 24/7.</p><div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-9"><a onclick="trackLead('hero_whatsapp')" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يزود%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer" class="btn-teal px-8 py-4 rounded-2xl text-lg text-center">احجز Demo لمطعمك الآن</a><a onclick="trackContact('hero_form')" href="#lead-form" class="btn-outline px-8 py-4 rounded-2xl text-lg font-black text-center">املأ النموذج</a></div><div class="text-slate-500 text-sm font-bold mb-8">Demo مجاني • تشغيل سريع • بدون تعقيد تقني</div><div class="grid grid-cols-4 gap-3 md:gap-5 max-w-2xl mx-auto lg:mx-0"><div class="card rounded-2xl p-4 text-center"><div class="text-2xl md:text-3xl font-black text-gold">24/7</div><div class="text-xs text-slate-500 mt-1">يعمل دائمًا</div></div><div class="card rounded-2xl p-4 text-center"><div class="text-2xl md:text-3xl font-black text-gold">&lt;1s</div><div class="text-xs text-slate-500 mt-1">رد سريع</div></div><div class="card rounded-2xl p-4 text-center"><div class="text-2xl md:text-3xl font-black text-gold">48h</div><div class="text-xs text-slate-500 mt-1">نسخة أولية</div></div><div class="card rounded-2xl p-4 text-center"><div class="text-2xl md:text-3xl font-black text-gold">$79</div><div class="text-xs text-slate-500 mt-1">يبدأ شهريًا</div></div></div></div>
-        <div class="relative reveal"><div class="absolute -inset-8 bg-gradient-to-br from-teal/20 to-gold/10 rounded-[50px] blur-3xl"></div><div class="phone-frame relative max-w-[390px] mx-auto rounded-[42px] p-4"><div class="bg-[#0b141a] rounded-[32px] overflow-hidden border border-white/5"><div class="px-4 py-4 flex items-center gap-3 bg-[#111b21] border-b border-white/5"><div class="w-11 h-11 rounded-full bg-gradient-to-br from-teal to-gold flex items-center justify-center text-black font-black">R</div><div><div class="font-bold">مطعم الذوق الخليجي</div><div class="text-xs text-teal">online الآن</div></div></div><div class="p-4 space-y-3 min-h-[520px] bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,.04),transparent_40%)]"><div class="msg msg-in">السلام عليكم، عندكم منيو الغداء؟</div><div class="msg msg-out">وعليكم السلام 👋 أكيد. اختر التصنيف:<br>1) مشاوي 🔥<br>2) برجر 🍔<br>3) وجبات عائلية 🍽️</div><div class="msg msg-in">وجبات عائلية</div><div class="msg msg-out">تمام. عندنا عرض العائلة. تحب أضيف لك حلى اليوم؟</div><div class="msg msg-in">تمام، أضف حلى</div><div class="msg msg-out">تم ✅ أرسل العنوان لو سمحت، وسيصلك إجمالي الطلب ووقت التوصيل.</div><div class="mt-5 card rounded-2xl p-4 border-teal/20"><div class="flex justify-between text-sm mb-2"><span>طلب جديد</span><span class="text-teal font-bold">Confirmed</span></div><div class="text-xs text-slate-400 leading-relaxed">وجبة عائلية + حلى اليوم<br>تم تحويل الطلب للإدارة تلقائيًا</div></div></div></div></div></div>
+  <main id="home" class="main-content">
+    <section class="hero section section--hero">
+      <div class="orb orb--teal" aria-hidden="true"></div>
+      <div class="orb orb--gold" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <div class="tag-group">
+            <span class="tag tag--teal">AI Sales Agent للمطاعم</span>
+            <span class="tag">الخليج ومصر</span>
+          </div>
+
+          <h1 class="hero__title">كل رسالة <span class="text-teal">واتساب</span> ممكن تكون طلب</h1>
+          <p class="hero__description">ClientFlow by Rawabat يحوّل واتساب مطعمك إلى AI Sales Agent يرد فورًا، يعرض المنيو، يقفل الطلب، ويتابع العملاء المترددين 24/7.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--teal btn--large" data-track-lead="hero_whatsapp" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يزود%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز Demo لمطعمك الآن</a>
+            <a class="btn btn--outline btn--large" data-track-contact="hero_form" href="#lead-form">املأ النموذج</a>
+          </div>
+
+          <p class="hero__note">Demo مجاني • تشغيل سريع • بدون تعقيد تقني</p>
+
+          <div class="stats-grid stats-grid--hero" aria-label="أرقام رئيسية">
+            <div class="stat-card">
+              <strong>24/7</strong>
+              <span>يعمل دائمًا</span>
+            </div>
+            <div class="stat-card">
+              <strong>&lt;1s</strong>
+              <span>رد سريع</span>
+            </div>
+            <div class="stat-card">
+              <strong>48h</strong>
+              <span>نسخة أولية</span>
+            </div>
+            <div class="stat-card">
+              <strong>$79</strong>
+              <span>يبدأ شهريًا</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__demo reveal" aria-label="محاكاة محادثة واتساب">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <div class="phone-avatar">R</div>
+                <div>
+                  <strong>مطعم الذوق الخليجي</strong>
+                  <span>online الآن</span>
+                </div>
+              </div>
+
+              <div class="chat-window">
+                <div class="msg msg--in">السلام عليكم، عندكم منيو الغداء؟</div>
+                <div class="msg msg--out">وعليكم السلام 👋 أكيد. اختر التصنيف:<br />1) مشاوي 🔥<br />2) برجر 🍔<br />3) وجبات عائلية 🍽️</div>
+                <div class="msg msg--in">وجبات عائلية</div>
+                <div class="msg msg--out">تمام. عندنا عرض العائلة. تحب أضيف لك حلى اليوم؟</div>
+                <div class="msg msg--in">تمام، أضف حلى</div>
+                <div class="msg msg--out">تم ✅ أرسل العنوان لو سمحت، وسيصلك إجمالي الطلب ووقت التوصيل.</div>
+
+                <div class="order-card">
+                  <div class="order-card__top">
+                    <span>طلب جديد</span>
+                    <strong>Confirmed</strong>
+                  </div>
+                  <p>وجبة عائلية + حلى اليوم<br />تم تحويل الطلب للإدارة تلقائيًا</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="problem" class="py-20 md:py-28"><div class="max-w-7xl mx-auto px-5 md:px-8"><div class="text-center max-w-3xl mx-auto reveal"><span class="tag mb-5">المشكلة اليومية</span><h2 class="text-3xl md:text-5xl font-black mb-6">طلبات تضيع لأن <span class="text-gold">الرد متأخر</span> أو المتابعة غائبة</h2><p class="text-slate-400 text-lg leading-relaxed">لو مطعمك يعتمد على واتساب، فالمشكلة غالبًا ليست في عدد الرسائل، بل في ضياع الفرص بين الرسائل.</p></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14"><div class="card card-hover rounded-3xl p-7 reveal"><div class="text-4xl mb-4">💬</div><h3 class="text-xl font-black mb-3">عملاء يسألون ويختفون</h3><p class="text-slate-400 leading-relaxed">العميل يطلب المنيو أو السعر ثم يختفي لأن لا أحد تابعه في الوقت المناسب.</p></div><div class="card card-hover rounded-3xl p-7 reveal"><div class="text-4xl mb-4">⏱️</div><h3 class="text-xl font-black mb-3">بطء الرد وقت الزحمة</h3><p class="text-slate-400 leading-relaxed">وقت الذروة يجعل الرد اليدوي أبطأ، والعميل يذهب إلى منافس أسرع.</p></div><div class="card card-hover rounded-3xl p-7 reveal"><div class="text-4xl mb-4">📱</div><h3 class="text-xl font-black mb-3">واتساب شغال لكنه لا يبيع</h3><p class="text-slate-400 leading-relaxed">وجود الرسائل لا يعني وجود نظام. بدون تنظيم ومتابعة، المبيعات تضيع.</p></div><div class="card card-hover rounded-3xl p-7 reveal"><div class="text-4xl mb-4">👁️</div><h3 class="text-xl font-black mb-3">لا رؤية واضحة للطلبات</h3><p class="text-slate-400 leading-relaxed">يصعب معرفة من أكمل الطلب، ومن توقف، ومن يحتاج متابعة سريعة.</p></div><div class="card card-hover rounded-3xl p-7 reveal"><div class="text-4xl mb-4">😓</div><h3 class="text-xl font-black mb-3">فريقك يستهلك وقته في التكرار</h3><p class="text-slate-400 leading-relaxed">نفس الأسئلة يوميًا بدل التركيز على التشغيل والخدمة.</p></div><div class="card card-hover rounded-3xl p-7 reveal"><div class="text-4xl mb-4">💸</div><h3 class="text-xl font-black mb-3">مبيعات ضائعة كل يوم</h3><p class="text-slate-400 leading-relaxed">كل عميل متردد لا تتم متابعته يمثل فرصة بيع خرجت من الباب.</p></div></div></div></section>
+    <section id="problem" class="section section--problem">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="tag">المشكلة اليومية</span>
+          <h2>طلبات تضيع لأن <span class="text-gold">الرد متأخر</span> أو المتابعة غائبة</h2>
+          <p>لو مطعمك يعتمد على واتساب، فالمشكلة غالبًا ليست في عدد الرسائل، بل في ضياع الفرص بين الرسائل.</p>
+        </div>
 
-    <section id="roi" class="py-20 md:py-28 bg-black/20"><div class="max-w-7xl mx-auto px-5 md:px-8"><div class="text-center max-w-3xl mx-auto reveal"><span class="tag tag-teal mb-5">بلغة الأرقام</span><h2 class="text-3xl md:text-5xl font-black mb-6">ClientFlow <span class="text-gold">استثمار</span> وليس تكلفة</h2><p class="text-slate-400 text-lg leading-relaxed">حتى عدد قليل من الطلبات الضائعة يوميًا قد يكون أغلى من الاشتراك الشهري كله.</p></div><div class="card rounded-[34px] p-7 md:p-12 mt-14 text-center reveal overflow-hidden relative"><div class="absolute -top-24 -right-24 w-80 h-80 bg-teal/10 rounded-full blur-3xl"></div><p class="text-slate-400 text-lg mb-7 relative">إذا ضاع منك 10 طلبات يوميًا فقط</p><div class="grid md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1.3fr] gap-4 items-center relative"><div class="bg-black/30 rounded-3xl p-6"><div class="text-4xl font-black text-teal">10</div><div class="text-sm text-slate-500">طلب يومي ضائع</div></div><div class="text-3xl text-slate-500 mobile-hide">×</div><div class="bg-black/30 rounded-3xl p-6"><div class="text-4xl font-black text-teal">$10</div><div class="text-sm text-slate-500">متوسط قيمة الطلب</div></div><div class="text-3xl text-slate-500 mobile-hide">×</div><div class="bg-black/30 rounded-3xl p-6"><div class="text-4xl font-black text-teal">30</div><div class="text-sm text-slate-500">يوم في الشهر</div></div><div class="text-3xl text-slate-500 mobile-hide">=</div><div class="bg-teal/10 border border-teal/30 rounded-3xl p-6"><div class="text-4xl font-black text-gold">$3,000</div><div class="text-sm text-slate-400">خسارة شهرية محتملة</div></div></div><div class="mt-8 rounded-2xl bg-teal/5 border border-teal/15 p-5 text-slate-300">ClientFlow يبدأ من <strong class="text-teal text-xl">$79 / شهر</strong> ليحول واتساب من عبء إلى قناة بيع.</div></div></div></section>
+        <div class="cards-grid cards-grid--three">
+          <article class="feature-card reveal">
+            <div class="feature-card__icon">💬</div>
+            <h3>عملاء يسألون ويختفون</h3>
+            <p>العميل يطلب المنيو أو السعر ثم يختفي لأن لا أحد تابعه في الوقت المناسب.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-card__icon">⏱️</div>
+            <h3>بطء الرد وقت الزحمة</h3>
+            <p>وقت الذروة يجعل الرد اليدوي أبطأ، والعميل يذهب إلى منافس أسرع.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-card__icon">📱</div>
+            <h3>واتساب شغال لكنه لا يبيع</h3>
+            <p>وجود الرسائل لا يعني وجود نظام. بدون تنظيم ومتابعة، المبيعات تضيع.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-card__icon">👁️</div>
+            <h3>لا رؤية واضحة للطلبات</h3>
+            <p>يصعب معرفة من أكمل الطلب، ومن توقف، ومن يحتاج متابعة سريعة.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-card__icon">😓</div>
+            <h3>فريقك يستهلك وقته في التكرار</h3>
+            <p>نفس الأسئلة يوميًا بدل التركيز على التشغيل والخدمة.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-card__icon">💸</div>
+            <h3>مبيعات ضائعة كل يوم</h3>
+            <p>كل عميل متردد لا تتم متابعته يمثل فرصة بيع خرجت من الباب.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <section id="solution" class="py-20 md:py-28"><div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-center"><div class="reveal"><span class="tag tag-teal mb-5">الحل</span><h2 class="text-3xl md:text-5xl font-black leading-tight mb-7">نظام طلبات واتساب ذكي، جاهز لمطعمك بسرعة</h2><p class="text-slate-400 text-lg leading-relaxed mb-8">نركّب لك بوت مخصص لهوية مطعمك، منيوك، فروعك، وطريقة استقبال الطلبات لديك.</p><div class="space-y-4"><div class="flex gap-4 card rounded-2xl p-5"><div class="text-teal text-2xl">✓</div><div><h3 class="font-black mb-1">يرد على العملاء فورًا</h3><p class="text-slate-400 text-sm">تحية، منيو، عروض، مواعيد العمل، مواقع الفروع.</p></div></div><div class="flex gap-4 card rounded-2xl p-5"><div class="text-teal text-2xl">✓</div><div><h3 class="font-black mb-1">يجمع الطلب بدون أخطاء</h3><p class="text-slate-400 text-sm">الأصناف، الكمية، الإضافات، العنوان، طريقة الدفع.</p></div></div><div class="flex gap-4 card rounded-2xl p-5"><div class="text-teal text-2xl">✓</div><div><h3 class="font-black mb-1">يزود قيمة الطلب</h3><p class="text-slate-400 text-sm">يقترح إضافات وعروض مناسبة تلقائيًا قبل تأكيد الطلب.</p></div></div><div class="flex gap-4 card rounded-2xl p-5"><div class="text-teal text-2xl">✓</div><div><h3 class="font-black mb-1">يرسل الطلب للإدارة</h3><p class="text-slate-400 text-sm">Google Sheets، واتساب الإدارة، CRM، أو النظام الداخلي.</p></div></div></div></div><div class="reveal"><div class="card rounded-[36px] p-6 md:p-8"><div class="flex items-center justify-between mb-8"><div><div class="text-sm text-slate-500">لوحة متابعة مبسطة</div><h3 class="text-2xl font-black">Restaurant Orders</h3></div><span class="tag tag-teal">Live</span></div><div class="space-y-4"><div class="bg-white/5 rounded-2xl p-4 flex items-center justify-between"><div><div class="font-bold">طلب #1042</div><div class="text-sm text-slate-500">وجبة عائلية + حلى</div></div><div class="text-teal font-black">مؤكد</div></div><div class="bg-white/5 rounded-2xl p-4 flex items-center justify-between"><div><div class="font-bold">طلب #1043</div><div class="text-sm text-slate-500">برجر + مشروب</div></div><div class="text-gold font-black">قيد التأكيد</div></div><div class="bg-white/5 rounded-2xl p-4 flex items-center justify-between"><div><div class="font-bold">طلب #1044</div><div class="text-sm text-slate-500">مشاوي + إضافات</div></div><div class="text-teal font-black">مؤكد</div></div></div><div class="grid grid-cols-3 gap-3 mt-6"><div class="bg-black/25 rounded-2xl p-4 text-center"><div class="text-2xl font-black text-teal">37</div><div class="text-xs text-slate-500">طلبات اليوم</div></div><div class="bg-black/25 rounded-2xl p-4 text-center"><div class="text-2xl font-black text-gold">18%</div><div class="text-xs text-slate-500">Upsell</div></div><div class="bg-black/25 rounded-2xl p-4 text-center"><div class="text-2xl font-black text-teal">9s</div><div class="text-xs text-slate-500">متوسط الرد</div></div></div></div></div></div></section>
+    <section id="roi" class="section section--muted">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="tag tag--teal">بلغة الأرقام</span>
+          <h2>ClientFlow <span class="text-gold">استثمار</span> وليس تكلفة</h2>
+          <p>حتى عدد قليل من الطلبات الضائعة يوميًا قد يكون أغلى من الاشتراك الشهري كله.</p>
+        </div>
 
-    <section id="proof" class="py-20 md:py-28 bg-black/20"><div class="max-w-7xl mx-auto px-5 md:px-8"><div class="text-center max-w-3xl mx-auto reveal"><span class="tag mb-5">شاهد النظام فعليًا</span><h2 class="text-3xl md:text-5xl font-black mb-6">صورة المحادثة تبيع أسرع من الكلام</h2><p class="text-slate-400 text-lg leading-relaxed">استخدم صور البوت والـ Workflow كدليل بصري في الصفحة والإعلانات.</p></div><div class="grid lg:grid-cols-2 gap-6 mt-14"><figure class="media-card reveal"><img src="chat.png" alt="محادثة واتساب حقيقية يظهر فيها ClientFlow تأكيد الطلب" loading="lazy" decoding="async" /></figure><figure class="media-card reveal"><img src="hero.png" alt="عرض بصري لمنتج ClientFlow AI لمطاعم الخليج" loading="lazy" decoding="async" /></figure><figure class="media-card reveal"><img src="workflow-design.png" alt="تصميم Workflow توضيحي لنظام ClientFlow AI" loading="lazy" decoding="async" /></figure><figure class="media-card reveal"><img src="workflow-real.png.png" alt="Workflow حقيقي لنظام ClientFlow AI" loading="lazy" decoding="async" /></figure></div></div></section>
+        <div class="roi-box reveal">
+          <div class="roi-box__orb" aria-hidden="true"></div>
+          <p class="roi-box__intro">إذا ضاع منك 10 طلبات يوميًا فقط</p>
 
-    <section id="pricing" class="py-20 md:py-28"><div class="max-w-7xl mx-auto px-5 md:px-8"><div class="text-center max-w-3xl mx-auto reveal"><span class="tag mb-5">تسعير مناسب للخليج ومصر</span><h2 class="text-3xl md:text-5xl font-black mb-6">باقات بالدولار أقل من تكلفة موظف واحد</h2><p class="text-slate-400 text-lg">ابدأ بسعر ذكي، ومع نمو الطلبات نطور النظام حسب احتياج مطعمك.</p></div><div class="grid lg:grid-cols-3 gap-6 mt-14"><div class="card rounded-[30px] p-8 reveal"><h3 class="text-2xl font-black mb-2">Starter</h3><p class="text-slate-500 mb-6">لمطعم يبدأ الأتمتة</p><div class="mb-7"><span class="text-5xl font-black text-gold font-inter">$79</span><span class="text-slate-500"> / شهر</span></div><div class="text-sm text-slate-400 mb-6">Setup: <span class="line-through">$150</span> <span class="text-teal font-bold">مجاني لأول 5 مطاعم</span></div><ul class="space-y-3 text-slate-300 mb-8"><li>✓ رد تلقائي على العملاء</li><li>✓ منيو واتساب بسيط</li><li>✓ تسجيل بيانات الطلب</li><li>✓ تحويل الطلب للإدارة</li><li>✓ دعم أول 7 أيام</li></ul><a onclick="trackLead('starter')" href="https://wa.me/201000045140?text=أريد%20باقة%20Starter%20لمطعمي" target="_blank" rel="noopener noreferrer" class="btn-outline block text-center py-4 rounded-2xl font-black">ابدأ Starter</a></div><div class="card rounded-[30px] p-8 reveal border-teal/40 relative overflow-hidden scale-[1.02]"><div class="absolute top-0 left-1/2 -translate-x-1/2 bg-teal text-black text-xs font-black px-5 py-2 rounded-b-2xl">الأفضل للبيع</div><div class="pt-5"><h3 class="text-2xl font-black mb-2">Growth</h3><p class="text-slate-500 mb-6">للمطاعم التي تريد زيادة الطلبات</p><div class="mb-7"><span class="text-5xl font-black text-teal font-inter">$129</span><span class="text-slate-500"> / شهر</span></div><div class="text-sm text-slate-400 mb-6">Setup: <span class="line-through">$250</span> <span class="text-teal font-bold">مجاني لأول 5 مطاعم</span></div><ul class="space-y-3 text-slate-300 mb-8"><li>✓ كل مميزات Starter</li><li>✓ Upsell تلقائي</li><li>✓ عروض وكوبونات</li><li>✓ تقارير أسبوعية</li><li>✓ ربط Google Sheets</li><li>✓ تحسين المحادثات شهريًا</li></ul><a onclick="trackLead('growth')" href="https://wa.me/201000045140?text=أريد%20باقة%20Growth%20لمطعمي" target="_blank" rel="noopener noreferrer" class="btn-teal block text-center py-4 rounded-2xl text-lg">ابدأ Growth</a></div></div><div class="card rounded-[30px] p-8 reveal"><h3 class="text-2xl font-black mb-2">Pro</h3><p class="text-slate-500 mb-6">للمطاعم متعددة الفروع</p><div class="mb-7"><span class="text-5xl font-black text-gold font-inter">$199</span><span class="text-slate-500"> / شهر</span></div><div class="text-sm text-slate-400 mb-6">Setup: يبدأ من <span class="text-gold font-bold">$300</span></div><ul class="space-y-3 text-slate-300 mb-8"><li>✓ كل مميزات Growth</li><li>✓ Multi-branch</li><li>✓ CRM للعملاء</li><li>✓ سيناريوهات مخصصة</li><li>✓ ربط API أو POS حسب الإمكانية</li><li>✓ مدير حساب مخصص</li></ul><a onclick="trackLead('pro')" href="https://wa.me/201000045140?text=أريد%20باقة%20Pro%20لمطعمي" target="_blank" rel="noopener noreferrer" class="btn-outline block text-center py-4 rounded-2xl font-black">ناقش Pro</a></div></div></div></section>
+          <div class="roi-equation" aria-label="معادلة الخسارة الشهرية المحتملة">
+            <div class="roi-item">
+              <strong>10</strong>
+              <span>طلب يومي ضائع</span>
+            </div>
+            <div class="roi-operator">×</div>
+            <div class="roi-item">
+              <strong>$10</strong>
+              <span>متوسط قيمة الطلب</span>
+            </div>
+            <div class="roi-operator">×</div>
+            <div class="roi-item">
+              <strong>30</strong>
+              <span>يوم في الشهر</span>
+            </div>
+            <div class="roi-operator">=</div>
+            <div class="roi-result">
+              <strong>$3,000</strong>
+              <span>خسارة شهرية محتملة</span>
+            </div>
+          </div>
 
-    <section id="lead-form" class="py-16 md:py-24 bg-black/20"><div class="max-w-6xl mx-auto px-5 md:px-8 reveal"><div class="grid lg:grid-cols-[.9fr_1.1fr] gap-6 items-start"><div class="card rounded-[34px] p-7 md:p-9 lg:sticky lg:top-28"><span class="tag tag-teal mb-6">Enterprise Lead Capture</span><h2 class="text-3xl md:text-5xl font-black mb-5 leading-tight">احصل على Demo مخصص لمطعمك</h2><p class="text-slate-400 text-lg leading-relaxed mb-7">املأ البيانات، وسنفتح لك محادثة واتساب برسالة منظمة تحتوي على كل التفاصيل المطلوبة لتجهيز تصور سريع.</p><div class="mini-proof mb-7"><div><strong>48h</strong><span class="text-xs text-slate-500">تصور أولي</span></div><div><strong>24/7</strong><span class="text-xs text-slate-500">رد تلقائي</span></div><div><strong>$79</strong><span class="text-xs text-slate-500">يبدأ شهريًا</span></div></div><div class="rounded-2xl bg-black/25 border border-white/10 p-5"><div class="flex items-center justify-between gap-3 mb-3"><span class="text-sm font-black text-slate-300">جاهزية العميل</span><span id="leadScoreText" class="text-sm font-black text-teal">35%</span></div><div class="lead-meter"><div id="leadScoreBar" class="lead-meter-fill"></div></div><p class="text-xs text-slate-500 mt-3">كلما زادت البيانات، زادت سرعة تجهيز الديمو.</p></div></div><div class="card rounded-[38px] p-6 md:p-10 overflow-hidden"><form id="enterpriseLeadForm" class="grid md:grid-cols-2 gap-5" novalidate><input type="hidden" name="utm_source" id="utm_source" /><input type="hidden" name="utm_campaign" id="utm_campaign" /><input type="hidden" name="page_url" id="page_url" /><div><label class="lead-label">اسم صاحب القرار *</label><input class="lead-input" name="name" required placeholder="مثال: أحمد محمد" /><div class="lead-error">اكتب اسم صاحب القرار.</div></div><div><label class="lead-label">رقم واتساب *</label><input class="lead-input" name="phone" required dir="ltr" inputmode="tel" placeholder="+9665xxxxxxx" /><div class="lead-error">اكتب رقم واتساب صحيح.</div></div><div><label class="lead-label">اسم المطعم *</label><input class="lead-input" name="restaurant" required placeholder="مثال: مطعم الذوق" /><div class="lead-error">اكتب اسم المطعم.</div></div><div><label class="lead-label">الدولة / المدينة *</label><input class="lead-input" name="location" required placeholder="مثال: الكويت - السالمية" /><div class="lead-error">اكتب الدولة أو المدينة.</div></div><div><label class="lead-label">عدد الفروع</label><select class="lead-select" name="branches"><option value="فرع واحد">فرع واحد</option><option value="2 - 3 فروع">2 - 3 فروع</option><option value="4 - 10 فروع">4 - 10 فروع</option><option value="أكثر من 10 فروع">أكثر من 10 فروع</option></select></div><div><label class="lead-label">حجم رسائل واتساب يوميًا</label><select class="lead-select" name="messages"><option value="أقل من 30 رسالة">أقل من 30 رسالة</option><option value="30 - 100 رسالة">30 - 100 رسالة</option><option value="100 - 300 رسالة">100 - 300 رسالة</option><option value="أكثر من 300 رسالة">أكثر من 300 رسالة</option></select></div><div><label class="lead-label">هل لديك منيو جاهز؟</label><select class="lead-select" name="menu_status"><option value="نعم، منيو جاهز">نعم، منيو جاهز</option><option value="نعم لكن يحتاج تنظيم">نعم لكن يحتاج تنظيم</option><option value="لا، نحتاج بناء منيو">لا، نحتاج بناء منيو</option></select></div><div><label class="lead-label">الباقة الأقرب لك</label><select class="lead-select" name="package"><option value="Starter - $79">Starter - $79</option><option value="Growth - $129">Growth - $129</option><option value="Pro - $199">Pro - $199</option><option value="أحتاج ترشيح مناسب">أحتاج ترشيح مناسب</option></select></div><div class="md:col-span-2"><label class="lead-label">أكبر مشكلة حاليًا في واتساب</label><textarea class="lead-textarea" name="problem" rows="4" placeholder="مثال: تأخير الرد وقت الزحمة، أخطاء في الطلبات، عدم متابعة العملاء..."></textarea><p class="lead-help">اكتب أي تفاصيل تساعدنا نجهز لك Demo أقرب لواقع مطعمك.</p></div><div class="md:col-span-2 grid sm:grid-cols-2 gap-4 mt-2"><button type="submit" class="btn-teal px-8 py-4 rounded-2xl text-lg">إرسال البيانات عبر واتساب</button><button type="button" onclick="copyLeadSummary()" class="btn-outline px-8 py-4 rounded-2xl text-lg font-black">نسخ ملخص العميل</button></div></form><div id="leadSuccess" class="lead-success">✅ تم تجهيز رسالة واتساب ببياناتك. إن لم تُفتح تلقائيًا، انسخ الملخص وأرسله لنا.</div><div class="flex flex-col sm:flex-row gap-4 justify-center mt-7"><a onclick="trackContact('google_form_backup')" href="https://docs.google.com/forms/d/e/1FAIpQLSenBRI4Ck4KiCOsR3W7On8ECuiaLb-wYwEbRINKRpRdFeNf7A/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn-outline px-8 py-4 rounded-2xl text-lg font-black text-center">فتح Google Form كبديل</a><a onclick="trackLead('email')" href="mailto:ahmed.hassan@GetRawabat.com?subject=ClientFlow Restaurant Demo" class="btn-outline px-8 py-4 rounded-2xl text-lg font-black text-center">راسلنا بالإيميل</a></div></div></div></div></section>
+          <div class="roi-note">ClientFlow يبدأ من <strong>$79 / شهر</strong> ليحول واتساب من عبء إلى قناة بيع.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" class="section section--solution">
+      <div class="container split-grid">
+        <div class="reveal">
+          <span class="tag tag--teal">الحل</span>
+          <h2>نظام طلبات واتساب ذكي، جاهز لمطعمك بسرعة</h2>
+          <p>نركّب لك بوت مخصص لهوية مطعمك، منيوك، فروعك، وطريقة استقبال الطلبات لديك.</p>
+
+          <div class="check-list">
+            <div class="check-item">
+              <span>✓</span>
+              <div>
+                <h3>يرد على العملاء فورًا</h3>
+                <p>تحية، منيو، عروض، مواعيد العمل، مواقع الفروع.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <span>✓</span>
+              <div>
+                <h3>يجمع الطلب بدون أخطاء</h3>
+                <p>الأصناف، الكمية، الإضافات، العنوان، طريقة الدفع.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <span>✓</span>
+              <div>
+                <h3>يزود قيمة الطلب</h3>
+                <p>يقترح إضافات وعروض مناسبة تلقائيًا قبل تأكيد الطلب.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <span>✓</span>
+              <div>
+                <h3>يرسل الطلب للإدارة</h3>
+                <p>Google Sheets، واتساب الإدارة، CRM، أو النظام الداخلي.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card reveal">
+          <div class="dashboard-card__head">
+            <div>
+              <span>لوحة متابعة مبسطة</span>
+              <h3>Restaurant Orders</h3>
+            </div>
+            <span class="tag tag--teal">Live</span>
+          </div>
+
+          <div class="orders-list">
+            <div class="order-row">
+              <div>
+                <strong>طلب #1042</strong>
+                <span>وجبة عائلية + حلى</span>
+              </div>
+              <strong class="status status--confirmed">مؤكد</strong>
+            </div>
+            <div class="order-row">
+              <div>
+                <strong>طلب #1043</strong>
+                <span>برجر + مشروب</span>
+              </div>
+              <strong class="status status--pending">قيد التأكيد</strong>
+            </div>
+            <div class="order-row">
+              <div>
+                <strong>طلب #1044</strong>
+                <span>مشاوي + إضافات</span>
+              </div>
+              <strong class="status status--confirmed">مؤكد</strong>
+            </div>
+          </div>
+
+          <div class="stats-grid stats-grid--dashboard">
+            <div class="stat-card">
+              <strong>37</strong>
+              <span>طلبات اليوم</span>
+            </div>
+            <div class="stat-card">
+              <strong>18%</strong>
+              <span>Upsell</span>
+            </div>
+            <div class="stat-card">
+              <strong>9s</strong>
+              <span>متوسط الرد</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof" class="section section--muted">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="tag">شاهد النظام فعليًا</span>
+          <h2>صورة المحادثة تبيع أسرع من الكلام</h2>
+          <p>استخدم صور البوت والـ Workflow كدليل بصري في الصفحة والإعلانات.</p>
+        </div>
+
+        <div class="media-grid">
+          <figure class="media-card reveal">
+            <img src="chat.png" alt="محادثة واتساب حقيقية يظهر فيها ClientFlow تأكيد الطلب" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="media-card reveal">
+            <img src="hero.png" alt="عرض بصري لمنتج ClientFlow AI لمطاعم الخليج" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="media-card reveal">
+            <img src="workflow-design.png" alt="تصميم Workflow توضيحي لنظام ClientFlow AI" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="media-card reveal">
+            <img src="workflow-real.png.png" alt="Workflow حقيقي لنظام ClientFlow AI" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section section--pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="tag">تسعير مناسب للخليج ومصر</span>
+          <h2>باقات بالدولار أقل من تكلفة موظف واحد</h2>
+          <p>ابدأ بسعر ذكي، ومع نمو الطلبات نطور النظام حسب احتياج مطعمك.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card reveal">
+            <h3>Starter</h3>
+            <p>لمطعم يبدأ الأتمتة</p>
+            <div class="price"><strong>$79</strong><span>/ شهر</span></div>
+            <p class="setup-note">Setup: <s>$150</s> <strong>مجاني لأول 5 مطاعم</strong></p>
+            <ul>
+              <li>✓ رد تلقائي على العملاء</li>
+              <li>✓ منيو واتساب بسيط</li>
+              <li>✓ تسجيل بيانات الطلب</li>
+              <li>✓ تحويل الطلب للإدارة</li>
+              <li>✓ دعم أول 7 أيام</li>
+            </ul>
+            <a class="btn btn--outline btn--full" data-track-lead="starter" href="https://wa.me/201000045140?text=أريد%20باقة%20Starter%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ Starter</a>
+          </article>
+
+          <article class="pricing-card pricing-card--featured reveal">
+            <span class="pricing-card__badge">الأفضل للبيع</span>
+            <h3>Growth</h3>
+            <p>للمطاعم التي تريد زيادة الطلبات</p>
+            <div class="price price--teal"><strong>$129</strong><span>/ شهر</span></div>
+            <p class="setup-note">Setup: <s>$250</s> <strong>مجاني لأول 5 مطاعم</strong></p>
+            <ul>
+              <li>✓ كل مميزات Starter</li>
+              <li>✓ Upsell تلقائي</li>
+              <li>✓ عروض وكوبونات</li>
+              <li>✓ تقارير أسبوعية</li>
+              <li>✓ ربط Google Sheets</li>
+              <li>✓ تحسين المحادثات شهريًا</li>
+            </ul>
+            <a class="btn btn--teal btn--full" data-track-lead="growth" href="https://wa.me/201000045140?text=أريد%20باقة%20Growth%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ Growth</a>
+          </article>
+
+          <article class="pricing-card reveal">
+            <h3>Pro</h3>
+            <p>للمطاعم متعددة الفروع</p>
+            <div class="price"><strong>$199</strong><span>/ شهر</span></div>
+            <p class="setup-note">Setup: يبدأ من <strong>$300</strong></p>
+            <ul>
+              <li>✓ كل مميزات Growth</li>
+              <li>✓ Multi-branch</li>
+              <li>✓ CRM للعملاء</li>
+              <li>✓ سيناريوهات مخصصة</li>
+              <li>✓ ربط API أو POS حسب الإمكانية</li>
+              <li>✓ مدير حساب مخصص</li>
+            </ul>
+            <a class="btn btn--outline btn--full" data-track-lead="pro" href="https://wa.me/201000045140?text=أريد%20باقة%20Pro%20لمطعمي" target="_blank" rel="noopener noreferrer">ناقش Pro</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lead-form" class="section section--lead-form">
+      <div class="container lead-grid reveal">
+        <aside class="lead-panel">
+          <span class="tag tag--teal">Enterprise Lead Capture</span>
+          <h2>احصل على Demo مخصص لمطعمك</h2>
+          <p>املأ البيانات، وسنفتح لك محادثة واتساب برسالة منظمة تحتوي على كل التفاصيل المطلوبة لتجهيز تصور سريع.</p>
+
+          <div class="mini-proof">
+            <div>
+              <strong>48h</strong>
+              <span>تصور أولي</span>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <span>رد تلقائي</span>
+            </div>
+            <div>
+              <strong>$79</strong>
+              <span>يبدأ شهريًا</span>
+            </div>
+          </div>
+
+          <div class="lead-score-card">
+            <div class="lead-score-card__head">
+              <span>جاهزية العميل</span>
+              <strong id="leadScoreText">35%</strong>
+            </div>
+            <div class="lead-meter">
+              <div id="leadScoreBar" class="lead-meter__fill"></div>
+            </div>
+            <p>كلما زادت البيانات، زادت سرعة تجهيز الديمو.</p>
+          </div>
+        </aside>
+
+        <div class="lead-form-card">
+          <form id="enterpriseLeadForm" class="lead-form" novalidate>
+            <input type="hidden" name="utm_source" id="utm_source" />
+            <input type="hidden" name="utm_campaign" id="utm_campaign" />
+            <input type="hidden" name="page_url" id="page_url" />
+
+            <div class="form-field">
+              <label class="lead-label" for="leadName">اسم صاحب القرار *</label>
+              <input id="leadName" class="lead-input" name="name" required placeholder="مثال: أحمد محمد" />
+              <div class="lead-error">اكتب اسم صاحب القرار.</div>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadPhone">رقم واتساب *</label>
+              <input id="leadPhone" class="lead-input" name="phone" required dir="ltr" inputmode="tel" placeholder="+9665xxxxxxx" />
+              <div class="lead-error">اكتب رقم واتساب صحيح.</div>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadRestaurant">اسم المطعم *</label>
+              <input id="leadRestaurant" class="lead-input" name="restaurant" required placeholder="مثال: مطعم الذوق" />
+              <div class="lead-error">اكتب اسم المطعم.</div>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadLocation">الدولة / المدينة *</label>
+              <input id="leadLocation" class="lead-input" name="location" required placeholder="مثال: الكويت - السالمية" />
+              <div class="lead-error">اكتب الدولة أو المدينة.</div>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadBranches">عدد الفروع</label>
+              <select id="leadBranches" class="lead-select" name="branches">
+                <option value="فرع واحد">فرع واحد</option>
+                <option value="2 - 3 فروع">2 - 3 فروع</option>
+                <option value="4 - 10 فروع">4 - 10 فروع</option>
+                <option value="أكثر من 10 فروع">أكثر من 10 فروع</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadMessages">حجم رسائل واتساب يوميًا</label>
+              <select id="leadMessages" class="lead-select" name="messages">
+                <option value="أقل من 30 رسالة">أقل من 30 رسالة</option>
+                <option value="30 - 100 رسالة">30 - 100 رسالة</option>
+                <option value="100 - 300 رسالة">100 - 300 رسالة</option>
+                <option value="أكثر من 300 رسالة">أكثر من 300 رسالة</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadMenuStatus">هل لديك منيو جاهز؟</label>
+              <select id="leadMenuStatus" class="lead-select" name="menu_status">
+                <option value="نعم، منيو جاهز">نعم، منيو جاهز</option>
+                <option value="نعم لكن يحتاج تنظيم">نعم لكن يحتاج تنظيم</option>
+                <option value="لا، نحتاج بناء منيو">لا، نحتاج بناء منيو</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label class="lead-label" for="leadPackage">الباقة الأقرب لك</label>
+              <select id="leadPackage" class="lead-select" name="package">
+                <option value="Starter - $79">Starter - $79</option>
+                <option value="Growth - $129">Growth - $129</option>
+                <option value="Pro - $199">Pro - $199</option>
+                <option value="أحتاج ترشيح مناسب">أحتاج ترشيح مناسب</option>
+              </select>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label class="lead-label" for="leadProblem">أكبر مشكلة حاليًا في واتساب</label>
+              <textarea id="leadProblem" class="lead-textarea" name="problem" rows="4" placeholder="مثال: تأخير الرد وقت الزحمة، أخطاء في الطلبات، عدم متابعة العملاء..."></textarea>
+              <p class="lead-help">اكتب أي تفاصيل تساعدنا نجهز لك Demo أقرب لواقع مطعمك.</p>
+            </div>
+
+            <div class="form-actions form-field--full">
+              <button type="submit" class="btn btn--teal btn--large">إرسال البيانات عبر واتساب</button>
+              <button type="button" id="copyLeadSummaryBtn" class="btn btn--outline btn--large">نسخ ملخص العميل</button>
+            </div>
+          </form>
+
+          <div id="leadSuccess" class="lead-success" role="status">✅ تم تجهيز رسالة واتساب ببياناتك. إن لم تُفتح تلقائيًا، انسخ الملخص وأرسله لنا.</div>
+
+          <div class="lead-backup-actions">
+            <a class="btn btn--outline" data-track-contact="google_form_backup" href="https://docs.google.com/forms/d/e/1FAIpQLSenBRI4Ck4KiCOsR3W7On8ECuiaLb-wYwEbRINKRpRdFeNf7A/viewform?usp=header" target="_blank" rel="noopener noreferrer">فتح Google Form كبديل</a>
+            <a class="btn btn--outline" data-track-lead="email" href="mailto:ahmed.hassan@GetRawabat.com?subject=ClientFlow Restaurant Demo">راسلنا بالإيميل</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="border-t border-white/5 py-12"><div class="max-w-7xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-right"><div><div class="font-inter font-black text-xl">Rawabat</div><div class="text-slate-500 text-sm mt-1">ClientFlow Restaurants — Egypt & GCC</div></div><div class="text-slate-500 text-sm">© 2026 Rawabat. جميع الحقوق محفوظة.</div><div class="flex gap-4 text-sm"><a href="https://www.facebook.com/rawabat/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-gold">Facebook</a><a onclick="trackLead('footer_whatsapp')" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-teal">WhatsApp</a></div></div></footer>
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div>
+        <div class="footer__brand">Rawabat</div>
+        <div class="footer__subtitle">ClientFlow Restaurants — Egypt & GCC</div>
+      </div>
+      <div class="footer__copyright">© 2026 Rawabat. جميع الحقوق محفوظة.</div>
+      <div class="footer__links">
+        <a href="https://www.facebook.com/rawabat/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a data-track-lead="footer_whatsapp" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
 
-  <a onclick="trackLead('floating_whatsapp')" class="whatsapp-float" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب"><svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-  <div class="sticky-cta"><div class="sticky-inner"><div class="sticky-copy">جاهز تشوف كيف نرفع طلبات واتساب في مطعمك؟ احجز Demo سريع من نفس الصفحة.</div><a onclick="trackLead('sticky_cta')" class="btn-teal px-6 py-3 rounded-2xl text-center" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يرفع%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز Demo الآن</a></div></div>
+  <a class="whatsapp-float" data-track-lead="floating_whatsapp" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
 
-  <script>
-    function trackLead(label){ if(typeof fbq==='function') fbq('track','Lead',{content_name:label||'lead'}); }
-    function trackContact(label){ if(typeof fbq==='function') fbq('track','Contact',{content_name:label||'contact'}); }
-    const qs=new URLSearchParams(window.location.search);
-    function setHidden(id,val){ const el=document.getElementById(id); if(el) el.value=val; }
-    setHidden('utm_source',qs.get('utm_source')||'direct'); setHidden('utm_campaign',qs.get('utm_campaign')||'none'); setHidden('page_url',window.location.href);
-    function getLeadData(){ const form=document.getElementById('enterpriseLeadForm'); return Object.fromEntries(new FormData(form).entries()); }
-    function buildLeadSummary(){ const d=getLeadData(); return 'مرحبًا، أريد تجربة ClientFlow لمطعمي\n\n'+'الاسم: '+(d.name||'-')+'\n'+'واتساب العميل: '+(d.phone||'-')+'\n'+'اسم المطعم: '+(d.restaurant||'-')+'\n'+'الدولة/المدينة: '+(d.location||'-')+'\n'+'عدد الفروع: '+(d.branches||'-')+'\n'+'رسائل واتساب يوميًا: '+(d.messages||'-')+'\n'+'حالة المنيو: '+(d.menu_status||'-')+'\n'+'الباقة الأقرب: '+(d.package||'-')+'\n'+'المشكلة الحالية: '+(d.problem||'-')+'\n\n'+'UTM Source: '+(d.utm_source||'-')+'\n'+'Campaign: '+(d.utm_campaign||'-')+'\n'+'Page: '+(d.page_url||window.location.href); }
-    function validateEnterpriseForm(){ const form=document.getElementById('enterpriseLeadForm'); let valid=true; ['name','phone','restaurant','location'].forEach(function(name){ const field=form.elements[name]; const wrap=field.closest('div'); const value=String(field.value||'').trim(); let ok=value.length>=2; if(name==='phone') ok=value.replace(/\D/g,'').length>=8; wrap.classList.toggle('field-invalid',!ok); if(!ok) valid=false; }); return valid; }
-    function updateLeadScore(){ const d=getLeadData(); let s=35; if((d.name||'').trim())s+=8; if((d.phone||'').replace(/\D/g,'').length>=8)s+=12; if((d.restaurant||'').trim())s+=10; if((d.location||'').trim())s+=10; if(d.messages&&!d.messages.includes('أقل'))s+=8; if(d.menu_status&&d.menu_status.includes('جاهز'))s+=7; if((d.problem||'').trim().length>10)s+=10; s=Math.min(s,100); const bar=document.getElementById('leadScoreBar'),txt=document.getElementById('leadScoreText'); if(bar)bar.style.width=s+'%'; if(txt)txt.textContent=s+'%'; }
-    async function copyLeadSummary(){ const summary=buildLeadSummary(); try{ await navigator.clipboard.writeText(summary); document.getElementById('leadSuccess').style.display='block'; trackContact('copy_lead_summary'); }catch(e){ alert(summary); } }
-    const form=document.getElementById('enterpriseLeadForm'); if(form){ form.addEventListener('input',updateLeadScore); form.addEventListener('change',updateLeadScore); form.addEventListener('submit',function(e){ e.preventDefault(); if(!validateEnterpriseForm())return; const summary=buildLeadSummary(); localStorage.setItem('rawabat_last_lead',summary); document.getElementById('leadSuccess').style.display='block'; trackLead('enterprise_form_submit'); window.open('https://wa.me/201000045140?text='+encodeURIComponent(summary),'_blank'); }); updateLeadScore(); }
-    const nav=document.getElementById('nav'); window.addEventListener('scroll',function(){ if(window.scrollY>40)nav.classList.add('glass','py-3'); else nav.classList.remove('glass','py-3'); const pricing=document.getElementById('pricing'); if(pricing&&!pricing.dataset.viewed){ const r=pricing.getBoundingClientRect(); if(r.top<window.innerHeight*.75){ pricing.dataset.viewed='true'; if(typeof fbq==='function')fbq('track','ViewContent',{content_name:'pricing'}); } } });
-    const observer=new IntersectionObserver(function(entries){ entries.forEach(function(entry){ if(entry.isIntersecting)entry.target.classList.add('show'); }); },{threshold:.12}); document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
-  </script>
+  <div class="sticky-cta" aria-label="دعوة ثابتة للإجراء">
+    <div class="sticky-inner">
+      <div class="sticky-copy">جاهز تشوف كيف نرفع طلبات واتساب في مطعمك؟ احجز Demo سريع من نفس الصفحة.</div>
+      <a class="btn btn--teal" data-track-lead="sticky_cta" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يرفع%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز Demo الآن</a>
+    </div>
+  </div>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
