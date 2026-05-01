@@ -271,6 +271,156 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: .75s cubic-bezier(.2,.8,.2,1); }
     .reveal.show { opacity: 1; transform: translateY(0); }
 
+
+
+/* =========================================================
+   FAQ + Testimonials Sections
+========================================================= */
+.faq-grid,
+.testimonials-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 56px;
+}
+
+.faq-grid {
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.faq-item,
+.testimonial-card {
+  background: var(--gradient-card, linear-gradient(145deg, rgba(10, 10, 16, 0.94), rgba(17, 17, 24, 0.9)));
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  box-shadow: var(--shadow-card, 0 24px 80px rgba(0, 0, 0, 0.25));
+}
+
+.faq-item {
+  border-radius: 22px;
+  padding: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.faq-item:hover,
+.testimonial-card:hover {
+  border-color: rgba(0, 212, 170, 0.35);
+  transform: translateY(-3px);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 22px 24px;
+  font-size: 1.05rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--bg, #050508);
+  background: linear-gradient(135deg, var(--teal), var(--teal2));
+  font-family: var(--font-latin, system-ui);
+  font-weight: 900;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item p {
+  color: var(--muted, #9b98a5);
+  line-height: 1.85;
+  padding: 0 24px 24px;
+  max-width: 820px;
+}
+
+.testimonials-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.testimonial-card {
+  border-radius: 26px;
+  padding: 26px;
+  transition: 0.3s ease;
+}
+
+.testimonial-card__top {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+
+.testimonial-card__top strong {
+  font-size: 1.08rem;
+}
+
+.testimonial-card__top span {
+  color: var(--muted, #9b98a5);
+  font-size: 0.84rem;
+}
+
+.testimonial-card__metric {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(0, 212, 170, 0.08);
+  border: 1px solid rgba(0, 212, 170, 0.22);
+  color: var(--teal, #00d4aa);
+  font-family: var(--font-latin, system-ui), var(--font-main, sans-serif);
+  font-weight: 900;
+  font-size: 0.86rem;
+}
+
+.testimonial-card p {
+  color: #d8d4df;
+  line-height: 1.85;
+}
+
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-item summary {
+    padding: 20px;
+    font-size: 0.98rem;
+  }
+
+  .faq-item p,
+  .testimonial-card {
+    padding: 0 20px 20px;
+  }
+
+  .testimonial-card {
+    padding: 22px;
+  }
+}
+
+
     @media (max-width: 1024px) {
       .section { padding: 76px 0; }
       .nav__links { display: none; }
@@ -334,7 +484,7 @@
         <span class="brand__text"><span class="brand__name">Rawabat</span><span class="brand__subtitle">ClientFlow Restaurants</span></span>
       </a>
       <div class="nav__links" aria-label="روابط الصفحة">
-        <a href="#problem">المشكلة</a><a href="#roi">الأرقام</a><a href="#proof">النظام</a><a href="#pricing">الباقات</a><a href="#lead-form">النموذج</a>
+        <a href="#problem">المشكلة</a><a href="#roi">الأرقام</a><a href="#proof">النظام</a><a href="#pricing">الباقات</a><a href="#faq">الأسئلة</a><a href="#reviews">النتائج</a><a href="#lead-form">النموذج</a>
       </div>
       <div class="nav__actions">
         <a class="btn btn--outline" data-track-lead="whatsapp_nav" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">واتساب مباشر</a>
@@ -384,6 +534,113 @@
 
     <section id="pricing" class="section section--pricing">
       <div class="container"><div class="section-head reveal"><span class="tag">تسعير مناسب للخليج ومصر</span><h2>باقات بالدولار أقل من تكلفة موظف واحد</h2><p>ابدأ بسعر ذكي، ومع نمو الطلبات نطور النظام حسب احتياج مطعمك.</p></div><div class="pricing-grid"><article class="pricing-card reveal"><h3>Starter</h3><p>لمطعم يبدأ الأتمتة</p><div class="price"><strong>$79</strong><span>/ شهر</span></div><p class="setup-note">Setup: <s>$150</s> <strong>مجاني لأول 5 مطاعم</strong></p><ul><li>✓ رد تلقائي على العملاء</li><li>✓ منيو واتساب بسيط</li><li>✓ تسجيل بيانات الطلب</li><li>✓ تحويل الطلب للإدارة</li><li>✓ دعم أول 7 أيام</li></ul><a class="btn btn--outline btn--full" data-track-lead="starter" href="https://wa.me/201000045140?text=أريد%20باقة%20Starter%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ Starter</a></article><article class="pricing-card pricing-card--featured reveal"><span class="pricing-card__badge">الأكثر مبيعًا للمطاعم</span><h3>Growth</h3><p>للمطاعم التي تريد زيادة الطلبات</p><div class="price price--teal"><strong>$129</strong><span>/ شهر</span></div><p class="setup-note">Setup: <s>$250</s> <strong>مجاني لأول 5 مطاعم</strong></p><ul><li>✓ كل مميزات Starter</li><li>✓ Upsell تلقائي</li><li>✓ عروض وكوبونات</li><li>✓ تقارير أسبوعية</li><li>✓ ربط Google Sheets</li><li>✓ تحسين المحادثات شهريًا</li></ul><a class="btn btn--teal btn--full" data-track-lead="growth" href="https://wa.me/201000045140?text=أريد%20باقة%20Growth%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ الباقة الموصى بها</a></article><article class="pricing-card reveal"><h3>Pro</h3><p>للمطاعم متعددة الفروع</p><div class="price"><strong>$199</strong><span>/ شهر</span></div><p class="setup-note">Setup: يبدأ من <strong>$300</strong></p><ul><li>✓ كل مميزات Growth</li><li>✓ Multi-branch</li><li>✓ CRM للعملاء</li><li>✓ سيناريوهات مخصصة</li><li>✓ ربط API أو POS حسب الإمكانية</li><li>✓ مدير حساب مخصص</li></ul><a class="btn btn--outline btn--full" data-track-lead="pro" href="https://wa.me/201000045140?text=أريد%20باقة%20Pro%20لمطعمي" target="_blank" rel="noopener noreferrer">ناقش Pro</a></article></div></div>
+    </section>
+
+
+
+    <section id="faq" class="section section--faq section--muted">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="tag tag--teal">FAQ</span>
+          <h2>أسئلة بتتسأل قبل ما <span class="text-gold">نركّب البوت</span></h2>
+          <p>إجابات قصيرة وواضحة. عشان تعرف هل ClientFlow مناسب لمطعمك ولا لأ.</p>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item reveal" open>
+            <summary>هل محتاج برمجة علشان أشغل البوت؟</summary>
+            <p>لا. إحنا بنركّب لك كل حاجة. منيو، ردود، سيناريوهات بيع، وربط الطلبات. أنت تبعت لنا بيانات المطعم والمنيو، وإحنا نجهز النظام بدون ما تحتاج مطور أو خبرة تقنية.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>البوت بيشتغل إزاي بالظبط؟</summary>
+            <p>العميل يبعت على واتساب. البوت يرد فورًا، يعرض المنيو، يسأل عن الإضافات، يجمع العنوان وطريقة الدفع، ثم يرسل الطلب للإدارة بشكل مرتب بدل الشات العشوائي.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>الـ Setup بياخد وقت قد إيه؟ وهل أقدر ألغي؟</summary>
+            <p>غالبًا من 24 إلى 48 ساعة للنسخة الأولى حسب جاهزية المنيو. تقدر توقف الخدمة في أي وقت. مفيش عقود إجبارية طويلة. الهدف إنك تشوف نتيجة بسرعة.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>هل البوت بيفهم المصري والخليجي؟</summary>
+            <p>أيوه. يتعامل مع كلام العملاء الطبيعي: “عايز منيو”، “وش العروض؟”، “ضيف لي حلى”، “كم التوصيل؟”. الردود تكون مفهومة وقريبة من أسلوب مطعمك.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>ينفع لو عندي منيو كبير أو أكثر من فرع؟</summary>
+            <p>ينفع. نرتب المنيو في تصنيفات واضحة، ونفصل الفروع لو احتجت. كل فرع ممكن يكون له منطقة توصيل، مواعيد، عروض، وطريقة استقبال طلبات مختلفة.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>إيه الفرق بين ClientFlow وبوت واتساب مجاني؟</summary>
+            <p>البوت المجاني يرد ردود محفوظة فقط. ClientFlow مصمم للبيع: يفهم نية العميل، يقترح إضافات، يتابع المترددين، ويسجل الطلبات. الفرق مش في الرد… الفرق في قفل الطلب.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>إيه اللي يحصل لو وقفت الدفع؟</summary>
+            <p>الخدمة المدفوعة تتوقف، والربط الذكي لا يستمر. بياناتك الأساسية تظل ملكك، ونقدر نسلمك ملخص الإعدادات حسب الباقة. مفيش قفل تعسفي ولا تعقيد.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>هل تقدروا تربطوني بـ Google Sheets أو نظامي الحالي؟</summary>
+            <p>أيوه. نقدر نربط الطلبات بـ Google Sheets، واتساب الإدارة، CRM، أو API حسب نظامك. لو عندك POS معين، نراجعه الأول ونقول لك هل الربط مباشر أو يحتاج حل وسيط.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>الدعم عندكم فوري وبيقفل المشاكل؟</summary>
+            <p>الدعم سريع ومباشر. نتابع أول تشغيل، نصلح الأخطاء، ونحسن الردود حسب رسائل العملاء الفعلية. مش بنسيبك بعد التركيب. هدفنا البوت يبيع مش بس يرد.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section section--reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="tag">Social Proof</span>
+          <h2>نماذج نتائج من مطاعم <span class="text-teal">تشبه مطعمك</span></h2>
+          <p>المنتج جديد. لذلك هذه أمثلة محاكاة واقعية لما نستهدف تحقيقه بعد أول 30 يوم تشغيل.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial-card reveal">
+            <div class="testimonial-card__top"><strong>أحمد محمد</strong><span>مطعم برجر ستيشن — مصر</span></div>
+            <div class="testimonial-card__metric">+32% طلبات في أول شهر</div>
+            <p>“كنا بنضيع شات كتير وقت الزحمة. البوت رتب الطلبات وبدأ يقفل العملاء بسرعة.”</p>
+          </article>
+
+          <article class="testimonial-card reveal">
+            <div class="testimonial-card__top"><strong>كريم علاء</strong><span>الشيف السريع — مصر</span></div>
+            <div class="testimonial-card__metric">+27% طلبات خلال 3 أسابيع</div>
+            <p>“أهم فرق كان في المتابعة. العميل اللي كان يختفي… البوت بيرجعه تاني.”</p>
+          </article>
+
+          <article class="testimonial-card reveal">
+            <div class="testimonial-card__top"><strong>محمود حسن</strong><span>كشري البلد — مصر</span></div>
+            <div class="testimonial-card__metric">+22% مبيعات واتساب</div>
+            <p>“الرد السريع فرق جدًا. بدل ما العميل يستنى، بياخد المنيو ويكمل الطلب فورًا.”</p>
+          </article>
+
+          <article class="testimonial-card reveal">
+            <div class="testimonial-card__top"><strong>فهد العتيبي</strong><span>Grill House — السعودية</span></div>
+            <div class="testimonial-card__metric">+35% طلبات في 30 يوم</div>
+            <p>“العملاء يبغون سرعة. البوت يرد خلال ثانية ويقترح إضافات بطريقة طبيعية.”</p>
+          </article>
+
+          <article class="testimonial-card reveal">
+            <div class="testimonial-card__top"><strong>عبدالله المطيري</strong><span>Brew Lab Café — الكويت</span></div>
+            <div class="testimonial-card__metric">+28% زيادة في الطلبات</div>
+            <p>“صار عندنا موظف واتساب شغال 24 ساعة. بدون راتب وبدون تأخير 😄”</p>
+          </article>
+
+          <article class="testimonial-card reveal">
+            <div class="testimonial-card__top"><strong>خالد الشامسي</strong><span>Shawarma Pro — الإمارات</span></div>
+            <div class="testimonial-card__metric">+31% نمو مبيعات</div>
+            <p>“الـ Upsell ذكي. كل طلب تقريبًا يزيد عليه مشروب أو إضافة قبل التأكيد.”</p>
+          </article>
+        </div>
+      </div>
     </section>
 
     <section id="lead-form" class="section section--lead-form">
