@@ -394,85 +394,7 @@
   line-height: 1.85;
 }
 
-/* =========================================================
-   About / Trust Section
-========================================================= */
-.section--about {
-  position: relative;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 42px;
-  align-items: center;
-}
-
-.about-copy h2 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: 1.2;
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  margin: 20px 0;
-}
-
-.about-copy p {
-  color: var(--muted, #9b98a5);
-  font-size: 1.04rem;
-  line-height: 1.9;
-  margin-bottom: 16px;
-}
-
-.about-card {
-  display: grid;
-  gap: 16px;
-  border-radius: 34px;
-  padding: clamp(24px, 4vw, 34px);
-  background: linear-gradient(145deg, rgba(10,10,16,.94), rgba(17,17,24,.9));
-  border: 1px solid rgba(212,175,55,.12);
-  box-shadow: var(--shadow-card, 0 24px 80px rgba(0,0,0,.25));
-}
-
-.about-card__item {
-  border-radius: 22px;
-  padding: 20px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-}
-
-.about-card__item strong {
-  display: block;
-  color: var(--teal, #00d4aa);
-  font-size: 1.05rem;
-  margin-bottom: 6px;
-}
-
-.about-card__item span {
-  display: block;
-  color: var(--muted, #9b98a5);
-  line-height: 1.75;
-  font-size: .92rem;
-}
-
 @media (max-width: 1024px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-card {
-    padding: 22px;
-    border-radius: 24px;
-  }
-
-  .about-copy p {
-    font-size: 1rem;
-  }
-}
-
-
-    @media (max-width: 1024px) {
   .testimonials-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -552,7 +474,7 @@
 </head>
 
 <body>
-  <div class="urgency-bar">🔥 Setup مجاني لفترة محدودة — نعمل مع عدد محدود من المطاعم لضمان جودة الإعداد والدعم</div>
+  <div class="urgency-bar">🔥 Setup مجاني لأول 5 مطاعم فقط — متبقي 2 أماكن</div>
   <div class="site-bg" aria-hidden="true"></div>
 
   <nav id="nav" class="site-nav" aria-label="القائمة الرئيسية">
@@ -562,7 +484,7 @@
         <span class="brand__text"><span class="brand__name">Rawabat</span><span class="brand__subtitle">ClientFlow Restaurants</span></span>
       </a>
       <div class="nav__links" aria-label="روابط الصفحة">
-        <a href="#problem">المشكلة</a><a href="#roi">الأرقام</a><a href="#proof">النظام</a><a href="#about">من نحن</a><a href="#pricing">الباقات</a><a href="#faq">الأسئلة</a><a href="#reviews">النتائج</a><a href="#lead-form">النموذج</a>
+        <a href="#problem">المشكلة</a><a href="#roi">الأرقام</a><a href="#proof">النظام</a><a href="#pricing">الباقات</a><a href="#faq">الأسئلة</a><a href="#reviews">النتائج</a><a href="#lead-form">النموذج</a>
       </div>
       <div class="nav__actions">
         <a class="btn btn--outline" data-track-lead="whatsapp_nav" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">واتساب مباشر</a>
@@ -609,24 +531,6 @@
     <section id="proof" class="section section--muted">
       <div class="container"><div class="section-head reveal"><span class="tag">شاهد النظام فعليًا</span><h2>تجربة واضحة تُظهر كيف يتحول واتساب إلى قناة بيع</h2><p>نماذج مرئية توضّح رحلة العميل من أول رسالة، حتى تسجيل الطلب ومتابعته داخل نظام ClientFlow.</p></div><div class="media-grid"><figure class="media-card reveal" aria-label="نموذج محادثة واتساب داخل ClientFlow"><div class="phone-frame proof-mockup"><div class="phone-screen"><div class="phone-header"><div class="phone-avatar">CF</div><div><strong>ClientFlow Bot</strong><span>يرد الآن</span></div></div><div class="chat-window"><div class="msg msg--in">السلام عليكم، أبغى أطلب منيو العروض</div><div class="msg msg--out">وعليكم السلام 👋 هذه عروض اليوم: وجبة عائلية، برجر كومبو، مشاوي. تحب أي تصنيف؟</div><div class="msg msg--in">وجبة عائلية</div><div class="msg msg--out">اختيار ممتاز ✅ هل تحب نضيف لك حلى أو مشروبات مع الطلب؟</div><div class="order-card"><div class="order-card__top"><span>Order Flow</span><strong>Active</strong></div><p>العميل انتقل من سؤال إلى طلب قابل للتأكيد داخل نفس المحادثة.</p></div></div></div></div></figure><figure class="media-card reveal" aria-label="نموذج لوحة متابعة ClientFlow"><div class="dashboard-card proof-mockup"><div class="dashboard-card__head"><div><span>ClientFlow Overview</span><h3>WhatsApp Sales Agent</h3></div><span class="tag tag--teal">Live</span></div><div class="orders-list"><div class="order-row"><div><strong>رسالة جديدة</strong><span>عميل يسأل عن المنيو</span></div><strong class="status status--confirmed">تم الرد</strong></div><div class="order-row"><div><strong>طلب قيد التجهيز</strong><span>وجبة عائلية + مشروبات</span></div><strong class="status status--pending">متابعة</strong></div><div class="order-row"><div><strong>Upsell</strong><span>إضافة حلى اليوم</span></div><strong class="status status--confirmed">تم</strong></div></div><div class="stats-grid stats-grid--dashboard"><div class="stat-card"><strong>37</strong><span>طلبات</span></div><div class="stat-card"><strong>18%</strong><span>زيادة</span></div><div class="stat-card"><strong>9s</strong><span>رد</span></div></div></div></figure><figure class="media-card reveal" aria-label="نموذج تصميم Workflow للأتمتة"><div class="dashboard-card proof-mockup"><div class="dashboard-card__head"><div><span>Workflow Design</span><h3>من الرسالة إلى الطلب</h3></div><span class="tag">Automation</span></div><div class="check-list"><div class="check-item"><span>1</span><div><h3>استقبال الرسالة</h3><p>العميل يبدأ المحادثة على واتساب.</p></div></div><div class="check-item"><span>2</span><div><h3>فهم الطلب</h3><p>البوت يحدد نية العميل: منيو، عرض، طلب، أو متابعة.</p></div></div><div class="check-item"><span>3</span><div><h3>تأكيد وتحويل</h3><p>يتم تسجيل الطلب وإرساله للفريق بشكل مرتب.</p></div></div></div></div></figure><figure class="media-card reveal" aria-label="نموذج Workflow تشغيل الطلبات"><div class="dashboard-card proof-mockup"><div class="dashboard-card__head"><div><span>Live Operations</span><h3>Workflow تشغيل الطلبات</h3></div><span class="tag tag--teal">Running</span></div><div class="orders-list"><div class="order-row"><div><strong>Trigger</strong><span>رسالة واتساب جديدة</span></div><strong class="status status--confirmed">OK</strong></div><div class="order-row"><div><strong>AI Agent</strong><span>تحليل الرسالة وتجهيز الرد</span></div><strong class="status status--confirmed">OK</strong></div><div class="order-row"><div><strong>Orders Sheet</strong><span>تسجيل الطلب وإرساله للإدارة</span></div><strong class="status status--pending">Sync</strong></div><div class="order-row"><div><strong>Follow-up</strong><span>متابعة العميل المتردد تلقائيًا</span></div><strong class="status status--confirmed">Ready</strong></div></div></div></figure></div></div>
     </section>
-
-    <section id="about" class="section section--about">
-      <div class="container about-grid">
-        <div class="about-copy reveal">
-          <span class="tag tag--teal">من نحن</span>
-          <h2>بنينا Rawabat علشان واتساب مطعمك <span class="text-gold">يبيع بذكاء</span> مش يرد وخلاص</h2>
-          <p>نحن في Rawabat نبني أنظمة بيع حقيقية للمطاعم، وليست مجرد ردود تلقائية. نحول واتساب من شات مزدحم إلى قناة طلبات واضحة تعمل طوال اليوم.</p>
-          <p>الفكرة بدأت من مشكلة رأيناها مع أصحاب المطاعم: فرص مبيعات تضيع لأن الرد اتأخر، أو العميل سأل عن المنيو ومحدش تابعه. لذلك بنينا ClientFlow ليقفل الفجوة بين أول رسالة وأول طلب.</p>
-          <p>وراء Rawabat أحمد حسن، متخصص في أتمتة الأعمال والتسويق الرقمي، مع خبرة عملية في بناء أنظمة CRM وتكامل WhatsApp Business API. نحن متخصصون في قطاع المطاعم تحديدًا، ونصمم النظام لواقع التشغيل اليومي: زحمة، منيو، فروع، عروض، وتوصيل.</p>
-        </div>
-        <div class="about-card reveal" aria-label="لماذا Rawabat؟">
-          <div class="about-card__item"><strong>تخصص مطاعم</strong><span>سيناريوهات طلبات، منيو، إضافات، وفروع.</span></div>
-          <div class="about-card__item"><strong>تركيب عملي</strong><span>نرتب المنيو ونبني مسار الطلب ونربطه بإدارتك.</span></div>
-          <div class="about-card__item"><strong>تحسين مستمر</strong><span>نراجع الرسائل ونحسن الردود حسب سلوك العملاء.</span></div>
-        </div>
-      </div>
-    </section>
-
 
     <section id="pricing" class="section section--pricing">
       <div class="container"><div class="section-head reveal"><span class="tag">تسعير مناسب للخليج ومصر</span><h2>باقات بالدولار أقل من تكلفة موظف واحد</h2><p>ابدأ بسعر ذكي، ومع نمو الطلبات نطور النظام حسب احتياج مطعمك.</p></div><div class="pricing-grid"><article class="pricing-card reveal"><h3>Starter</h3><p>لمطعم يبدأ الأتمتة</p><div class="price"><strong>$79</strong><span>/ شهر</span></div><p class="setup-note">Setup: <s>$150</s> <strong>مجاني لأول 5 مطاعم</strong></p><ul><li>✓ رد تلقائي على العملاء</li><li>✓ منيو واتساب بسيط</li><li>✓ تسجيل بيانات الطلب</li><li>✓ تحويل الطلب للإدارة</li><li>✓ دعم أول 7 أيام</li></ul><a class="btn btn--outline btn--full" data-track-lead="starter" href="https://wa.me/201000045140?text=أريد%20باقة%20Starter%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ Starter</a></article><article class="pricing-card pricing-card--featured reveal"><span class="pricing-card__badge">الأكثر مبيعًا للمطاعم</span><h3>Growth</h3><p>للمطاعم التي تريد زيادة الطلبات</p><div class="price price--teal"><strong>$129</strong><span>/ شهر</span></div><p class="setup-note">Setup: <s>$250</s> <strong>مجاني لأول 5 مطاعم</strong></p><ul><li>✓ كل مميزات Starter</li><li>✓ Upsell تلقائي</li><li>✓ عروض وكوبونات</li><li>✓ تقارير أسبوعية</li><li>✓ ربط Google Sheets</li><li>✓ تحسين المحادثات شهريًا</li></ul><a class="btn btn--teal btn--full" data-track-lead="growth" href="https://wa.me/201000045140?text=أريد%20باقة%20Growth%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ الباقة الموصى بها</a></article><article class="pricing-card reveal"><h3>Pro</h3><p>للمطاعم متعددة الفروع</p><div class="price"><strong>$199</strong><span>/ شهر</span></div><p class="setup-note">Setup: يبدأ من <strong>$300</strong></p><ul><li>✓ كل مميزات Growth</li><li>✓ Multi-branch</li><li>✓ CRM للعملاء</li><li>✓ سيناريوهات مخصصة</li><li>✓ ربط API أو POS حسب الإمكانية</li><li>✓ مدير حساب مخصص</li></ul><a class="btn btn--outline btn--full" data-track-lead="pro" href="https://wa.me/201000045140?text=أريد%20باقة%20Pro%20لمطعمي" target="_blank" rel="noopener noreferrer">ناقش Pro</a></article></div></div>
@@ -696,6 +600,7 @@
         <div class="section-head reveal">
           <span class="tag">Social Proof</span>
           <h2>نماذج نتائج من مطاعم <span class="text-teal">تشبه مطعمك</span></h2>
+          <p>المنتج جديد. لذلك هذه أمثلة محاكاة واقعية لما نستهدف تحقيقه بعد أول 30 يوم تشغيل.</p>
         </div>
 
         <div class="testimonials-grid">
@@ -724,7 +629,7 @@
           </article>
 
           <article class="testimonial-card reveal">
-            <div class="testimonial-card__top"><strong>عبدالله المطيري</strong><span>Brew Lab Café — البحرين</span></div>
+            <div class="testimonial-card__top"><strong>عبدالله المطيري</strong><span>Brew Lab Café — الكويت</span></div>
             <div class="testimonial-card__metric">+28% زيادة في الطلبات</div>
             <p>“صار عندنا موظف واتساب شغال 24 ساعة. بدون راتب وبدون تأخير 😄”</p>
           </article>
@@ -771,38 +676,8 @@
 
   <footer class="site-footer"><div class="container footer__inner"><div><div class="footer__brand">Rawabat</div><div class="footer__subtitle">ClientFlow Restaurants — Egypt & GCC</div></div><div class="footer__copyright">© 2026 Rawabat. جميع الحقوق محفوظة.</div><div class="footer__links"><a href="https://www.facebook.com/rawabat/" target="_blank" rel="noopener noreferrer">Facebook</a><a data-track-lead="footer_whatsapp" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div></footer>
   <a class="whatsapp-float" data-track-lead="floating_whatsapp" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب">💬</a>
-  <div class="sticky-cta" aria-label="دعوة ثابتة للإجراء"><div class="sticky-inner"><div class="sticky-copy">🔥 Setup مجاني لفترة محدودة — نعمل مع عدد محدود من المطاعم لضمان جودة الإعداد والدعم.</div><a class="btn btn--teal" data-track-lead="sticky_cta" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يرفع%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز مكانك الآن</a></div></div>
+  <div class="sticky-cta" aria-label="دعوة ثابتة للإجراء"><div class="sticky-inner"><div class="sticky-copy">Setup مجاني لأول 5 مطاعم فقط — احجز تجربتك قبل اكتمال الأماكن.</div><a class="btn btn--teal" data-track-lead="sticky_cta" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يرفع%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز مكانك الآن</a></div></div>
 
-  <script>
-    const CONFIG = { whatsappNumber: "201000045140", storageKey: "rawabat_last_lead", totalSteps: 4, requiredByStep: { 1: ["name", "phone"], 2: ["restaurant", "location"], 3: [], 4: [] } };
-    const state = { currentStep: 1, pricingViewed: false };
-    const $ = (s, r = document) => r.querySelector(s);
-    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-    const hasPixel = () => typeof window.fbq === "function";
-    function initMetaPixel(){ if(hasPixel())return; !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init','910167190291826'); fbq('track','PageView'); }
-    function trackLead(label="lead"){ if(hasPixel()) fbq("track","Lead",{content_name:label}); }
-    function trackContact(label="contact"){ if(hasPixel()) fbq("track","Contact",{content_name:label}); }
-    function trackViewContent(label="content"){ if(hasPixel()) fbq("track","ViewContent",{content_name:label}); }
-    function getForm(){ return $("#smartLeadForm"); }
-    function getData(){ const form=getForm(); return form ? Object.fromEntries(new FormData(form).entries()) : {}; }
-    function normalizePhone(v){ return String(v||"").replace(/\D/g,""); }
-    function getWhatsAppUrl(message){ return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`; }
-    function buildLeadSummary(){ const d=getData(); return ["مرحبًا، أريد تجربة ClientFlow لمطعمي","",`الاسم: ${d.name || "-"}`,`واتساب العميل: ${d.phone || "-"}`,`اسم المطعم: ${d.restaurant || "-"}`,`الدولة/المدينة: ${d.location || "-"}`,`عدد الفروع: ${d.branches || "-"}`,`رسائل واتساب يوميًا: ${d.messages || "-"}`,`حالة المنيو: ${d.menu_status || "-"}`,`الباقة الأقرب: ${d.package || "-"}`,`المشكلة الحالية: ${d.problem || "-"}`,"",`UTM Source: ${d.utm_source || "-"}`,`Campaign: ${d.utm_campaign || "-"}`,`Page: ${d.page_url || window.location.href}`].join("\n"); }
-    function setHiddenTracking(){ const q=new URLSearchParams(location.search); const fields={utm_source:q.get("utm_source")||"direct",utm_campaign:q.get("utm_campaign")||"none",page_url:location.href}; Object.entries(fields).forEach(([k,v])=>{ const el=$("#"+k); if(el)el.value=v; }); }
-    function fieldWrapper(field){ return field ? field.closest(".form-field") : null; }
-    function validateField(name){ const form=getForm(); if(!form || !form.elements[name]) return true; const field=form.elements[name]; const value=String(field.value||"").trim(); let ok=value.length>=2; if(name==="phone") ok=normalizePhone(value).length>=8; const wrap=fieldWrapper(field); if(wrap) wrap.classList.toggle("is-invalid",!ok); field.setAttribute("aria-invalid",String(!ok)); return ok; }
-    function validateStep(step){ return (CONFIG.requiredByStep[step]||[]).every(validateField); }
-    function calculateLeadScore(){ const d=getData(); let score=75; if(String(d.name||"").trim())score+=4; if(normalizePhone(d.phone).length>=8)score+=5; if(String(d.restaurant||"").trim())score+=4; if(String(d.location||"").trim())score+=4; if(d.messages && !String(d.messages).includes("أقل"))score+=3; if(d.problem && String(d.problem).trim().length>10)score+=5; return Math.min(score,100); }
-    function updateLeadScore(){ const score=calculateLeadScore(); const bar=$("#leadScoreBar"), text=$("#leadScoreText"); if(bar)bar.style.width=score+"%"; if(text)text.textContent=score+"%"; }
-    function updateSmartProgress(){ const pct=Math.round((state.currentStep/CONFIG.totalSteps)*100); $("#smartProgressBar").style.width=pct+"%"; $("#smartProgressText").textContent=pct+"%"; $("#smartStepLabel").textContent=`الخطوة ${state.currentStep} من ${CONFIG.totalSteps}`; $$(".smart-step").forEach(el=>el.classList.toggle("is-active",Number(el.dataset.step)===state.currentStep)); $$(".smart-step-pill").forEach(el=>el.classList.toggle("is-active",Number(el.dataset.stepPill)===state.currentStep)); $("#prevStepBtn").disabled=state.currentStep===1; $("#nextStepBtn").hidden=state.currentStep===CONFIG.totalSteps; $("#submitSmartFormBtn").hidden=state.currentStep!==CONFIG.totalSteps; }
-    function goStep(dir){ if(dir>0 && !validateStep(state.currentStep)) return; state.currentStep=Math.max(1,Math.min(CONFIG.totalSteps,state.currentStep+dir)); updateSmartProgress(); updateLeadScore(); }
-    async function copyLeadSummary(){ const text=buildLeadSummary(); try{ await navigator.clipboard.writeText(text); showSuccess(); trackContact("copy_lead_summary"); }catch(e){ alert(text); } }
-    function showSuccess(){ const el=$("#leadSuccess"); if(el) el.classList.add("is-visible"); }
-    function submitSmartForm(e){ e.preventDefault(); const allOk=[1,2].every(validateStep); if(!allOk){ state.currentStep=1; updateSmartProgress(); return; } const summary=buildLeadSummary(); try{ localStorage.setItem(CONFIG.storageKey,summary); }catch(e){} showSuccess(); trackLead("smart_form_submit"); window.open(getWhatsAppUrl(summary),"_blank","noopener,noreferrer"); }
-    function handleScroll(){ const nav=$("#nav"); if(nav)nav.classList.toggle("is-scrolled",scrollY>40); const pricing=$("#pricing"); if(pricing&&!state.pricingViewed&&pricing.getBoundingClientRect().top<innerHeight*.75){ state.pricingViewed=true; trackViewContent("pricing"); } }
-    function initReveal(){ const els=$$(".reveal"); if(!("IntersectionObserver" in window)){ els.forEach(el=>el.classList.add("show")); return; } const obs=new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("show"); obs.unobserve(e.target); }}),{threshold:.12}); els.forEach(el=>obs.observe(el)); }
-    function init(){ initMetaPixel(); setHiddenTracking(); $$("[data-track-lead]").forEach(el=>el.addEventListener("click",()=>trackLead(el.dataset.trackLead||"lead_click"))); $$("[data-track-contact]").forEach(el=>el.addEventListener("click",()=>trackContact(el.dataset.trackContact||"contact_click"))); const form=getForm(); if(form){ form.addEventListener("input",updateLeadScore); form.addEventListener("change",updateLeadScore); form.addEventListener("submit",submitSmartForm); ["name","phone","restaurant","location"].forEach(n=>form.elements[n]?.addEventListener("blur",()=>validateField(n))); } $("#nextStepBtn")?.addEventListener("click",()=>goStep(1)); $("#prevStepBtn")?.addEventListener("click",()=>goStep(-1)); $("#copyLeadSummaryBtn")?.addEventListener("click",copyLeadSummary); addEventListener("scroll",handleScroll,{passive:true}); initReveal(); updateSmartProgress(); updateLeadScore(); handleScroll(); }
-    document.readyState==="loading" ? document.addEventListener("DOMContentLoaded",init) : init();
-  </script>
+  <script src="main.js?v=5"></script>
 </body>
 </html>
