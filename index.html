@@ -394,7 +394,85 @@
   line-height: 1.85;
 }
 
+/* =========================================================
+   About / Trust Section
+========================================================= */
+.section--about {
+  position: relative;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.about-copy h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  margin: 20px 0;
+}
+
+.about-copy p {
+  color: var(--muted, #9b98a5);
+  font-size: 1.04rem;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+.about-card {
+  display: grid;
+  gap: 16px;
+  border-radius: 34px;
+  padding: clamp(24px, 4vw, 34px);
+  background: linear-gradient(145deg, rgba(10,10,16,.94), rgba(17,17,24,.9));
+  border: 1px solid rgba(212,175,55,.12);
+  box-shadow: var(--shadow-card, 0 24px 80px rgba(0,0,0,.25));
+}
+
+.about-card__item {
+  border-radius: 22px;
+  padding: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.about-card__item strong {
+  display: block;
+  color: var(--teal, #00d4aa);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.about-card__item span {
+  display: block;
+  color: var(--muted, #9b98a5);
+  line-height: 1.75;
+  font-size: .92rem;
+}
+
 @media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .about-copy p {
+    font-size: 1rem;
+  }
+}
+
+
+    @media (max-width: 1024px) {
   .testimonials-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -474,7 +552,7 @@
 </head>
 
 <body>
-  <div class="urgency-bar">🔥 Setup مجاني لأول 5 مطاعم فقط — العرض لفترة محدودة</div>
+  <div class="urgency-bar">🔥 Setup مجاني لفترة محدودة — نعمل مع عدد محدود من المطاعم لضمان جودة الإعداد والدعم</div>
   <div class="site-bg" aria-hidden="true"></div>
 
   <nav id="nav" class="site-nav" aria-label="القائمة الرئيسية">
@@ -484,7 +562,7 @@
         <span class="brand__text"><span class="brand__name">Rawabat</span><span class="brand__subtitle">ClientFlow Restaurants</span></span>
       </a>
       <div class="nav__links" aria-label="روابط الصفحة">
-        <a href="#problem">المشكلة</a><a href="#roi">الأرقام</a><a href="#proof">النظام</a><a href="#pricing">الباقات</a><a href="#faq">الأسئلة</a><a href="#reviews">النتائج</a><a href="#lead-form">النموذج</a>
+        <a href="#problem">المشكلة</a><a href="#roi">الأرقام</a><a href="#proof">النظام</a><a href="#about">من نحن</a><a href="#pricing">الباقات</a><a href="#faq">الأسئلة</a><a href="#reviews">النتائج</a><a href="#lead-form">النموذج</a>
       </div>
       <div class="nav__actions">
         <a class="btn btn--outline" data-track-lead="whatsapp_nav" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">واتساب مباشر</a>
@@ -531,6 +609,24 @@
     <section id="proof" class="section section--muted">
       <div class="container"><div class="section-head reveal"><span class="tag">شاهد النظام فعليًا</span><h2>تجربة واضحة تُظهر كيف يتحول واتساب إلى قناة بيع</h2><p>نماذج مرئية توضّح رحلة العميل من أول رسالة، حتى تسجيل الطلب ومتابعته داخل نظام ClientFlow.</p></div><div class="media-grid"><figure class="media-card reveal" aria-label="نموذج محادثة واتساب داخل ClientFlow"><div class="phone-frame proof-mockup"><div class="phone-screen"><div class="phone-header"><div class="phone-avatar">CF</div><div><strong>ClientFlow Bot</strong><span>يرد الآن</span></div></div><div class="chat-window"><div class="msg msg--in">السلام عليكم، أبغى أطلب منيو العروض</div><div class="msg msg--out">وعليكم السلام 👋 هذه عروض اليوم: وجبة عائلية، برجر كومبو، مشاوي. تحب أي تصنيف؟</div><div class="msg msg--in">وجبة عائلية</div><div class="msg msg--out">اختيار ممتاز ✅ هل تحب نضيف لك حلى أو مشروبات مع الطلب؟</div><div class="order-card"><div class="order-card__top"><span>Order Flow</span><strong>Active</strong></div><p>العميل انتقل من سؤال إلى طلب قابل للتأكيد داخل نفس المحادثة.</p></div></div></div></div></figure><figure class="media-card reveal" aria-label="نموذج لوحة متابعة ClientFlow"><div class="dashboard-card proof-mockup"><div class="dashboard-card__head"><div><span>ClientFlow Overview</span><h3>WhatsApp Sales Agent</h3></div><span class="tag tag--teal">Live</span></div><div class="orders-list"><div class="order-row"><div><strong>رسالة جديدة</strong><span>عميل يسأل عن المنيو</span></div><strong class="status status--confirmed">تم الرد</strong></div><div class="order-row"><div><strong>طلب قيد التجهيز</strong><span>وجبة عائلية + مشروبات</span></div><strong class="status status--pending">متابعة</strong></div><div class="order-row"><div><strong>Upsell</strong><span>إضافة حلى اليوم</span></div><strong class="status status--confirmed">تم</strong></div></div><div class="stats-grid stats-grid--dashboard"><div class="stat-card"><strong>37</strong><span>طلبات</span></div><div class="stat-card"><strong>18%</strong><span>زيادة</span></div><div class="stat-card"><strong>9s</strong><span>رد</span></div></div></div></figure><figure class="media-card reveal" aria-label="نموذج تصميم Workflow للأتمتة"><div class="dashboard-card proof-mockup"><div class="dashboard-card__head"><div><span>Workflow Design</span><h3>من الرسالة إلى الطلب</h3></div><span class="tag">Automation</span></div><div class="check-list"><div class="check-item"><span>1</span><div><h3>استقبال الرسالة</h3><p>العميل يبدأ المحادثة على واتساب.</p></div></div><div class="check-item"><span>2</span><div><h3>فهم الطلب</h3><p>البوت يحدد نية العميل: منيو، عرض، طلب، أو متابعة.</p></div></div><div class="check-item"><span>3</span><div><h3>تأكيد وتحويل</h3><p>يتم تسجيل الطلب وإرساله للفريق بشكل مرتب.</p></div></div></div></div></figure><figure class="media-card reveal" aria-label="نموذج Workflow تشغيل الطلبات"><div class="dashboard-card proof-mockup"><div class="dashboard-card__head"><div><span>Live Operations</span><h3>Workflow تشغيل الطلبات</h3></div><span class="tag tag--teal">Running</span></div><div class="orders-list"><div class="order-row"><div><strong>Trigger</strong><span>رسالة واتساب جديدة</span></div><strong class="status status--confirmed">OK</strong></div><div class="order-row"><div><strong>AI Agent</strong><span>تحليل الرسالة وتجهيز الرد</span></div><strong class="status status--confirmed">OK</strong></div><div class="order-row"><div><strong>Orders Sheet</strong><span>تسجيل الطلب وإرساله للإدارة</span></div><strong class="status status--pending">Sync</strong></div><div class="order-row"><div><strong>Follow-up</strong><span>متابعة العميل المتردد تلقائيًا</span></div><strong class="status status--confirmed">Ready</strong></div></div></div></figure></div></div>
     </section>
+
+    <section id="about" class="section section--about">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <span class="tag tag--teal">من نحن</span>
+          <h2>بنينا Rawabat علشان واتساب مطعمك <span class="text-gold">يبيع بذكاء</span> مش يرد وخلاص</h2>
+          <p>نحن في Rawabat نبني أنظمة بيع حقيقية للمطاعم، وليست مجرد ردود تلقائية. نحول واتساب من شات مزدحم إلى قناة طلبات واضحة تعمل طوال اليوم.</p>
+          <p>الفكرة بدأت من مشكلة رأيناها مع أصحاب المطاعم: فرص مبيعات تضيع لأن الرد اتأخر، أو العميل سأل عن المنيو ومحدش تابعه. لذلك بنينا ClientFlow ليقفل الفجوة بين أول رسالة وأول طلب.</p>
+          <p>وراء Rawabat أحمد حسن، متخصص في أتمتة الأعمال والتسويق الرقمي، مع خبرة عملية في بناء أنظمة CRM وتكامل WhatsApp Business API. نحن متخصصون في قطاع المطاعم تحديدًا، ونصمم النظام لواقع التشغيل اليومي: زحمة، منيو، فروع، عروض، وتوصيل.</p>
+        </div>
+        <div class="about-card reveal" aria-label="لماذا Rawabat؟">
+          <div class="about-card__item"><strong>تخصص مطاعم</strong><span>سيناريوهات طلبات، منيو، إضافات، وفروع.</span></div>
+          <div class="about-card__item"><strong>تركيب عملي</strong><span>نرتب المنيو ونبني مسار الطلب ونربطه بإدارتك.</span></div>
+          <div class="about-card__item"><strong>تحسين مستمر</strong><span>نراجع الرسائل ونحسن الردود حسب سلوك العملاء.</span></div>
+        </div>
+      </div>
+    </section>
+
 
     <section id="pricing" class="section section--pricing">
       <div class="container"><div class="section-head reveal"><span class="tag">تسعير مناسب للخليج ومصر</span><h2>باقات بالدولار أقل من تكلفة موظف واحد</h2><p>ابدأ بسعر ذكي، ومع نمو الطلبات نطور النظام حسب احتياج مطعمك.</p></div><div class="pricing-grid"><article class="pricing-card reveal"><h3>Starter</h3><p>لمطعم يبدأ الأتمتة</p><div class="price"><strong>$79</strong><span>/ شهر</span></div><p class="setup-note">Setup: <s>$150</s> <strong>مجاني لأول 5 مطاعم</strong></p><ul><li>✓ رد تلقائي على العملاء</li><li>✓ منيو واتساب بسيط</li><li>✓ تسجيل بيانات الطلب</li><li>✓ تحويل الطلب للإدارة</li><li>✓ دعم أول 7 أيام</li></ul><a class="btn btn--outline btn--full" data-track-lead="starter" href="https://wa.me/201000045140?text=أريد%20باقة%20Starter%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ Starter</a></article><article class="pricing-card pricing-card--featured reveal"><span class="pricing-card__badge">الأكثر مبيعًا للمطاعم</span><h3>Growth</h3><p>للمطاعم التي تريد زيادة الطلبات</p><div class="price price--teal"><strong>$129</strong><span>/ شهر</span></div><p class="setup-note">Setup: <s>$250</s> <strong>مجاني لأول 5 مطاعم</strong></p><ul><li>✓ كل مميزات Starter</li><li>✓ Upsell تلقائي</li><li>✓ عروض وكوبونات</li><li>✓ تقارير أسبوعية</li><li>✓ ربط Google Sheets</li><li>✓ تحسين المحادثات شهريًا</li></ul><a class="btn btn--teal btn--full" data-track-lead="growth" href="https://wa.me/201000045140?text=أريد%20باقة%20Growth%20لمطعمي" target="_blank" rel="noopener noreferrer">ابدأ الباقة الموصى بها</a></article><article class="pricing-card reveal"><h3>Pro</h3><p>للمطاعم متعددة الفروع</p><div class="price"><strong>$199</strong><span>/ شهر</span></div><p class="setup-note">Setup: يبدأ من <strong>$300</strong></p><ul><li>✓ كل مميزات Growth</li><li>✓ Multi-branch</li><li>✓ CRM للعملاء</li><li>✓ سيناريوهات مخصصة</li><li>✓ ربط API أو POS حسب الإمكانية</li><li>✓ مدير حساب مخصص</li></ul><a class="btn btn--outline btn--full" data-track-lead="pro" href="https://wa.me/201000045140?text=أريد%20باقة%20Pro%20لمطعمي" target="_blank" rel="noopener noreferrer">ناقش Pro</a></article></div></div>
@@ -675,7 +771,7 @@
 
   <footer class="site-footer"><div class="container footer__inner"><div><div class="footer__brand">Rawabat</div><div class="footer__subtitle">ClientFlow Restaurants — Egypt & GCC</div></div><div class="footer__copyright">© 2026 Rawabat. جميع الحقوق محفوظة.</div><div class="footer__links"><a href="https://www.facebook.com/rawabat/" target="_blank" rel="noopener noreferrer">Facebook</a><a data-track-lead="footer_whatsapp" href="https://wa.me/201000045140?text=مرحبًا%20،%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div></footer>
   <a class="whatsapp-float" data-track-lead="floating_whatsapp" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20تجربة%20ClientFlow%20لمطعمي" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب">💬</a>
-  <div class="sticky-cta" aria-label="دعوة ثابتة للإجراء"><div class="sticky-inner"><div class="sticky-copy">Setup مجاني لأول 5 مطاعم فقط — احجز تجربتك قبل اكتمال الأماكن.</div><a class="btn btn--teal" data-track-lead="sticky_cta" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يرفع%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز مكانك الآن</a></div></div>
+  <div class="sticky-cta" aria-label="دعوة ثابتة للإجراء"><div class="sticky-inner"><div class="sticky-copy">🔥 Setup مجاني لفترة محدودة — نعمل مع عدد محدود من المطاعم لضمان جودة الإعداد والدعم.</div><a class="btn btn--teal" data-track-lead="sticky_cta" href="https://wa.me/201000045140?text=السلام%20عليكم%20أريد%20Demo%20يوضح%20كيف%20ClientFlow%20يرفع%20طلبات%20واتساب%20في%20مطعمي" target="_blank" rel="noopener noreferrer">احجز مكانك الآن</a></div></div>
 
   <script>
     const CONFIG = { whatsappNumber: "201000045140", storageKey: "rawabat_last_lead", totalSteps: 4, requiredByStep: { 1: ["name", "phone"], 2: ["restaurant", "location"], 3: [], 4: [] } };
