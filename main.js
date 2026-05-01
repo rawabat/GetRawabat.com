@@ -16,7 +16,8 @@ const CONFIG = {
 
 const state = {
   currentStep: 1,
-  pricingViewed: false
+  pricingViewed: false,
+  formStarted: false
 };
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -244,7 +245,9 @@ function submitSmartForm(event) {
   }
 
   showSuccess();
-  trackLead("smart_form_submit");
+
+  trackLead("qualified_lead");
+  trackLead("whatsapp_conversion");
 
   window.open(getWhatsAppUrl(summary), "_blank", "noopener,noreferrer");
 }
@@ -291,7 +294,7 @@ function initReveal() {
 function initTrackingLinks() {
   $$("[data-track-lead]").forEach((element) => {
     element.addEventListener("click", () => {
-      trackLead(element.dataset.trackLead || "lead_click");
+      trackLead(element.dataset.trackLead || "whatsapp_click");
     });
   });
 
@@ -305,6 +308,13 @@ function initTrackingLinks() {
 function initForm() {
   const form = getForm();
   if (!form) return;
+
+  form.addEventListener("focusin", () => {
+    if (!state.formStarted) {
+      trackContact("form_start");
+      state.formStarted = true;
+    }
+  });
 
   form.addEventListener("input", updateLeadScore);
   form.addEventListener("change", updateLeadScore);
