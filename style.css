@@ -1601,3 +1601,80 @@ ul {
     padding: 22px;
   }
 }
+
+/* =========================================================
+   About / Trust Section
+========================================================= */
+.section--about {
+  position: relative;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.about-copy h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  margin: 20px 0;
+}
+
+.about-copy p {
+  color: var(--muted, #9b98a5);
+  font-size: 1.04rem;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+.about-card {
+  display: grid;
+  gap: 16px;
+  border-radius: 34px;
+  padding: clamp(24px, 4vw, 34px);
+  background: linear-gradient(145deg, rgba(10,10,16,.94), rgba(17,17,24,.9));
+  border: 1px solid rgba(212,175,55,.12);
+  box-shadow: var(--shadow-card, 0 24px 80px rgba(0,0,0,.25));
+}
+
+.about-card__item {
+  border-radius: 22px;
+  padding: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.about-card__item strong {
+  display: block;
+  color: var(--teal, #00d4aa);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.about-card__item span {
+  display: block;
+  color: var(--muted, #9b98a5);
+  line-height: 1.75;
+  font-size: .92rem;
+}
+
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .about-copy p {
+    font-size: 1rem;
+  }
+}
