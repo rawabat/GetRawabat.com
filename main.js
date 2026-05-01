@@ -50,15 +50,21 @@ function initMetaPixel() {
 }
 
 function trackLead(label = "lead") {
-  if (hasPixel()) fbq("track", "Lead", { content_name: label });
+  if (hasPixel()) {
+    fbq("track", "Lead", { content_name: label });
+  }
 }
 
 function trackContact(label = "contact") {
-  if (hasPixel()) fbq("track", "Contact", { content_name: label });
+  if (hasPixel()) {
+    fbq("track", "Contact", { content_name: label });
+  }
 }
 
 function trackViewContent(label = "content") {
-  if (hasPixel()) fbq("track", "ViewContent", { content_name: label });
+  if (hasPixel()) {
+    fbq("track", "ViewContent", { content_name: label });
+  }
 }
 
 function getForm() {
@@ -294,7 +300,12 @@ function initReveal() {
 function initTrackingLinks() {
   $$("[data-track-lead]").forEach((element) => {
     element.addEventListener("click", () => {
-      trackLead(element.dataset.trackLead || "whatsapp_click");
+      trackLead("whatsapp_click");
+
+      const specificLabel = element.dataset.trackLead;
+      if (specificLabel && specificLabel !== "whatsapp_click") {
+        trackLead(specificLabel);
+      }
     });
   });
 
