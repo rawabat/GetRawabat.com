@@ -1,12 +1,8 @@
 /* =========================================================
    RAWABAT ClientFlow — style.css
-   Order: Variables → Base → Layout → Components → Utilities
-   Mobile & Tablet first-class responsive support
+   Reviewed Conversion Version
 ========================================================= */
 
-/* =========================
-   1) Variables
-========================= */
 :root {
   --color-bg: #050508;
   --color-card: #0a0a10;
@@ -35,30 +31,17 @@
   --shadow-teal: 0 18px 50px rgba(0, 212, 170, 0.22);
   --shadow-whatsapp: 0 15px 45px rgba(37, 211, 102, 0.35);
 
-  --radius-xs: 10px;
-  --radius-sm: 14px;
-  --radius-md: 18px;
-  --radius-lg: 22px;
-  --radius-xl: 26px;
-  --radius-2xl: 30px;
-  --radius-3xl: 38px;
   --radius-pill: 999px;
-
   --container: 1280px;
   --section-padding: 96px;
   --section-padding-tablet: 76px;
   --section-padding-mobile: 64px;
-
-  --nav-height: 84px;
   --sticky-height: 86px;
 
   --font-main: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-latin: "Inter", system-ui, sans-serif;
 }
 
-/* =========================
-   2) Base
-========================= */
 * {
   box-sizing: border-box;
 }
@@ -76,11 +59,9 @@ body {
   overflow-x: hidden;
   padding-bottom: var(--sticky-height);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-body::selection,
 ::selection {
   background: rgba(212, 175, 55, 0.35);
   color: #fff;
@@ -130,9 +111,6 @@ ul {
   outline-offset: 3px;
 }
 
-/* =========================
-   3) Layout
-========================= */
 .container {
   width: min(var(--container), calc(100% - 40px));
   margin-inline: auto;
@@ -200,17 +178,20 @@ ul {
   -webkit-backdrop-filter: blur(20px);
 }
 
-.nav__inner {
+.nav__inner,
+.nav__links,
+.nav__actions {
   display: flex;
   align-items: center;
+}
+
+.nav__inner {
   justify-content: space-between;
   gap: 18px;
 }
 
 .nav__links,
 .nav__actions {
-  display: flex;
-  align-items: center;
   gap: 18px;
 }
 
@@ -324,6 +305,7 @@ ul {
 .site-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-block: 48px;
+  background: rgba(0, 0, 0, 0.14);
 }
 
 .footer__inner {
@@ -338,9 +320,6 @@ ul {
   gap: 18px;
 }
 
-/* =========================
-   4) Components
-========================= */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -386,6 +365,10 @@ ul {
   font-size: 0.78rem;
 }
 
+.footer__brand {
+  margin-bottom: 4px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -418,9 +401,11 @@ ul {
 }
 
 .btn--teal {
+  position: relative;
   background: var(--gradient-btn-teal);
   color: var(--color-bg);
   box-shadow: var(--shadow-teal);
+  animation: pulseGlow 2.4s infinite;
 }
 
 .btn--outline {
@@ -444,6 +429,36 @@ ul {
 .btn--outline:hover {
   background: rgba(212, 175, 55, 0.08);
   border-color: rgba(212, 175, 55, 0.65);
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 212, 170, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 212, 170, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 212, 170, 0.25);
+  }
+}
+
+.urgency-bar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 9999;
+  background: linear-gradient(90deg, #ff4d4d, #ffb36b);
+  color: #050508;
+  text-align: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 7px 12px;
+  letter-spacing: 0.2px;
+}
+
+.urgency-bar + .site-nav {
+  top: 32px;
 }
 
 .tag-group {
@@ -873,11 +888,22 @@ ul {
   position: relative;
   border-radius: 30px;
   padding: 32px;
+  transition: 0.3s ease;
 }
 
 .pricing-card--featured {
-  border-color: rgba(0, 212, 170, 0.4);
-  transform: scale(1.02);
+  border: 2px solid var(--color-teal);
+  transform: scale(1.04);
+  box-shadow: 0 0 44px rgba(0, 212, 170, 0.35);
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--color-teal);
+}
+
+.pricing-card--featured:hover {
+  transform: translateY(-8px) scale(1.05);
 }
 
 .pricing-card__badge {
@@ -927,7 +953,18 @@ ul {
 }
 
 .setup-note strong {
-  color: var(--color-teal);
+  color: #ff6b6b;
+  animation: softBlink 1.8s infinite;
+}
+
+@keyframes softBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.62;
+  }
 }
 
 .pricing-card ul {
@@ -1097,14 +1134,6 @@ ul {
   justify-content: center;
 }
 
-.site-footer {
-  background: rgba(0, 0, 0, 0.14);
-}
-
-.footer__brand {
-  margin-bottom: 4px;
-}
-
 .footer__links a {
   color: var(--color-muted);
   transition: color 0.25s ease;
@@ -1128,20 +1157,32 @@ ul {
   background: linear-gradient(135deg, var(--color-whatsapp), var(--color-whatsapp-dark));
   box-shadow: var(--shadow-whatsapp);
   transition: 0.25s ease;
+  animation: whatsappBounce 2.4s infinite;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.07);
 }
 
+@keyframes whatsappBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
 .sticky-cta {
   position: fixed;
   inset: auto 0 0 0;
   z-index: 70;
-  border-top: 1px solid rgba(212, 175, 55, 0.14);
-  background: rgba(5, 5, 8, 0.92);
+  border-top: 2px solid var(--color-teal);
+  background: rgba(5, 5, 8, 0.94);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 -10px 40px rgba(0, 212, 170, 0.2);
   padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
 }
 
@@ -1161,9 +1202,6 @@ ul {
   line-height: 1.5;
 }
 
-/* =========================
-   5) Utilities
-========================= */
 .text-gold {
   background: var(--gradient-gold);
   -webkit-background-clip: text;
@@ -1189,7 +1227,6 @@ ul {
   transform: translateY(0);
 }
 
-/* Tablet */
 @media (max-width: 1024px) {
   :root {
     --section-padding: var(--section-padding-tablet);
@@ -1238,7 +1275,6 @@ ul {
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   :root {
     --section-padding: var(--section-padding-mobile);
@@ -1254,7 +1290,7 @@ ul {
   }
 
   .main-content {
-    padding-top: 104px;
+    padding-top: 128px;
   }
 
   .site-nav {
@@ -1337,7 +1373,9 @@ ul {
     border-radius: 24px;
   }
 
-  .pricing-card--featured {
+  .pricing-card--featured,
+  .pricing-card--featured:hover,
+  .pricing-card:hover {
     transform: none;
   }
 
@@ -1360,9 +1398,13 @@ ul {
   .sticky-copy {
     text-align: center;
   }
+
+  .urgency-bar {
+    font-size: 0.78rem;
+    padding: 7px 10px;
+  }
 }
 
-/* Small Mobile */
 @media (max-width: 420px) {
   .container {
     width: min(100% - 22px, var(--container));
@@ -1391,7 +1433,6 @@ ul {
   }
 }
 
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1405,5 +1446,11 @@ ul {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .btn--teal,
+  .whatsapp-float,
+  .setup-note strong {
+    animation: none !important;
   }
 }
