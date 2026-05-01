@@ -1,10 +1,14 @@
 /* =========================================================
    RAWABAT ClientFlow — main.js
+   Advanced Ads Tracking Version
 ========================================================= */
 
 const CONFIG = {
   whatsappNumber: "201000045140",
   storageKey: "rawabat_last_lead",
+  utmStorageKey: "rawabat_utm_data",
+  sessionStorageKey: "rawabat_session_id",
+  debug: true,
   totalSteps: 4,
   requiredByStep: {
     1: ["name", "phone"],
@@ -17,13 +21,69 @@ const CONFIG = {
 const state = {
   currentStep: 1,
   pricingViewed: false,
-  formStarted: false
+  formStarted: false,
+  leadSubmitted: false,
+  whatsappClicked: false,
+  trackedSteps: new Set()
 };
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-const hasPixel = () => typeof window.fbq === "function";
+function logEvent(name, data = {}) {
+  if (CONFIG.debug) {
+    console.log("[Rawabat Tracking]", name, data);
+  }
+}
+
+function hasPixel() {
+  return typeof window.fbq === "function";
+}
+
+function getSessionId() {
+  let id = localStorage.getItem(CONFIG.sessionStorageKey);
+
+  if (!id) {
+    id = `rb_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    localStorage.setItem(CONFIG.sessionStorageKey, id);
+  }
+
+  return id;
+}
+
+function getUtmData() {
+  const params = new URLSearchParams(window.location.search);
+
+  const data = {
+    utm_source: params.get("utm_source") || localStorage.getItem("utm_source") || "direct",
+    utm_medium: params.get("utm_medium") || localStorage.getItem("utm_medium") || "none",
+    utm_campaign: params.get("utm_campaign") || localStorage.getItem("utm_campaign") || "none",
+    utm_content: params.get("utm_content") || localStorage.getItem("utm_content") || "none",
+    utm_term: params.get("utm_term") || localStorage.getItem("utm_term") || "none",
+    fbclid: params.get("fbclid") || localStorage.getItem("fbclid") || "",
+    landing_page: window.location.href,
+    referrer: document.referrer || "direct",
+    session_id: getSessionId()
+  };
+
+  Object.entries(data).forEach(([key, value]) => {
+    if (value) localStorage.setItem(key, value);
+  });
+
+  localStorage.setItem(CONFIG.utmStorageKey, JSON.stringify(data));
+
+  return data;
+}
+
+function basePayload(extra = {}) {
+  return {
+    ...getUtmData(),
+    page_path: window.location.pathname,
+    page_title: document.title,
+    timestamp: new Date().toISOString(),
+    ...extra
+  };
+}
 
 function initMetaPixel() {
   if (hasPixel()) return;
@@ -46,25 +106,53 @@ function initMetaPixel() {
   })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
 
   fbq("init", "910167190291826");
-  fbq("track", "PageView");
+  fbq("track", "PageView", basePayload({ event_source: "page_load" }));
+
+  logEvent("PageView", basePayload({ event_source: "page_load" }));
 }
 
-function trackLead(label = "lead") {
+function trackStandard(eventName, payload = {}) {
+  const data = basePayload(payload);
+
   if (hasPixel()) {
-    fbq("track", "Lead", { content_name: label });
+    fbq("track", eventName, data);
   }
+
+  logEvent(eventName, data);
 }
 
-function trackContact(label = "contact") {
+function trackCustom(eventName, payload = {}) {
+  const data = basePayload(payload);
+
   if (hasPixel()) {
-    fbq("track", "Contact", { content_name: label });
+    fbq("trackCustom", eventName, data);
   }
+
+  logEvent(eventName, data);
 }
 
-function trackViewContent(label = "content") {
-  if (hasPixel()) {
-    fbq("track", "ViewContent", { content_name: label });
-  }
+function trackLead(label = "lead", extra = {}) {
+  trackStandard("Lead", {
+    content_name: label,
+    funnel: "clientflow_restaurants",
+    ...extra
+  });
+}
+
+function trackContact(label = "contact", extra = {}) {
+  trackStandard("Contact", {
+    content_name: label,
+    funnel: "clientflow_restaurants",
+    ...extra
+  });
+}
+
+function trackViewContent(label = "content", extra = {}) {
+  trackStandard("ViewContent", {
+    content_name: label,
+    funnel: "clientflow_restaurants",
+    ...extra
+  });
 }
 
 function getForm() {
@@ -86,6 +174,7 @@ function getWhatsAppUrl(message) {
 
 function buildLeadSummary() {
   const data = getData();
+  const utm = getUtmData();
 
   return [
     "مرحبًا، أريد تجربة ClientFlow لمطعمي",
@@ -100,19 +189,22 @@ function buildLeadSummary() {
     `الباقة الأقرب: ${data.package || "-"}`,
     `المشكلة الحالية: ${data.problem || "-"}`,
     "",
-    `UTM Source: ${data.utm_source || "-"}`,
-    `Campaign: ${data.utm_campaign || "-"}`,
-    `Page: ${data.page_url || window.location.href}`
+    `Lead Score: ${calculateLeadScore()}%`,
+    `Session ID: ${utm.session_id}`,
+    `UTM Source: ${utm.utm_source}`,
+    `UTM Medium: ${utm.utm_medium}`,
+    `Campaign: ${utm.utm_campaign}`,
+    `Page: ${utm.landing_page}`
   ].join("\n");
 }
 
 function setHiddenTracking() {
-  const params = new URLSearchParams(location.search);
+  const utm = getUtmData();
 
   const fields = {
-    utm_source: params.get("utm_source") || "direct",
-    utm_campaign: params.get("utm_campaign") || "none",
-    page_url: location.href
+    utm_source: utm.utm_source,
+    utm_campaign: utm.utm_campaign,
+    page_url: utm.landing_page
   };
 
   Object.entries(fields).forEach(([key, value]) => {
@@ -153,14 +245,17 @@ function validateStep(step) {
 function calculateLeadScore() {
   const data = getData();
 
-  let score = 75;
+  let score = 55;
 
-  if (String(data.name || "").trim()) score += 4;
-  if (normalizePhone(data.phone).length >= 8) score += 5;
-  if (String(data.restaurant || "").trim()) score += 4;
-  if (String(data.location || "").trim()) score += 4;
-  if (data.messages && !String(data.messages).includes("أقل")) score += 3;
-  if (data.problem && String(data.problem).trim().length > 10) score += 5;
+  if (String(data.name || "").trim()) score += 8;
+  if (normalizePhone(data.phone).length >= 8) score += 12;
+  if (String(data.restaurant || "").trim()) score += 10;
+  if (String(data.location || "").trim()) score += 8;
+  if (data.messages && !String(data.messages).includes("أقل")) score += 7;
+  if (data.menu_status && String(data.menu_status).includes("جاهز")) score += 5;
+  if (data.branches && !String(data.branches).includes("فرع واحد")) score += 5;
+  if (data.package && !String(data.package).includes("Starter")) score += 5;
+  if (data.problem && String(data.problem).trim().length > 10) score += 8;
 
   return Math.min(score, 100);
 }
@@ -172,6 +267,11 @@ function updateLeadScore() {
 
   if (bar) bar.style.width = score + "%";
   if (text) text.textContent = score + "%";
+
+  trackCustom("LeadScoreUpdated", {
+    score,
+    lead_quality: score >= 85 ? "hot" : score >= 70 ? "warm" : "cold"
+  });
 }
 
 function updateSmartProgress() {
@@ -202,8 +302,25 @@ function updateSmartProgress() {
   if (submitBtn) submitBtn.hidden = state.currentStep !== CONFIG.totalSteps;
 }
 
+function trackFormStep(step) {
+  if (state.trackedSteps.has(step)) return;
+
+  state.trackedSteps.add(step);
+
+  trackCustom("FormStep", {
+    step,
+    progress: Math.round((step / CONFIG.totalSteps) * 100),
+    score: calculateLeadScore()
+  });
+}
+
 function goStep(direction) {
-  if (direction > 0 && !validateStep(state.currentStep)) return;
+  if (direction > 0 && !validateStep(state.currentStep)) {
+    trackCustom("FormValidationError", {
+      step: state.currentStep
+    });
+    return;
+  }
 
   state.currentStep = Math.max(
     1,
@@ -212,6 +329,7 @@ function goStep(direction) {
 
   updateSmartProgress();
   updateLeadScore();
+  trackFormStep(state.currentStep);
 }
 
 function showSuccess() {
@@ -225,7 +343,10 @@ async function copyLeadSummary() {
   try {
     await navigator.clipboard.writeText(text);
     showSuccess();
-    trackContact("copy_lead_summary");
+
+    trackContact("copy_lead_summary", {
+      score: calculateLeadScore()
+    });
   } catch (error) {
     alert(text);
   }
@@ -234,15 +355,26 @@ async function copyLeadSummary() {
 function submitSmartForm(event) {
   event.preventDefault();
 
+  if (state.leadSubmitted) return;
+
   const isValid = [1, 2].every(validateStep);
 
   if (!isValid) {
     state.currentStep = 1;
     updateSmartProgress();
+
+    trackCustom("SubmitBlocked", {
+      reason: "required_fields_missing"
+    });
+
     return;
   }
 
+  state.leadSubmitted = true;
+
   const summary = buildLeadSummary();
+  const score = calculateLeadScore();
+  const data = getData();
 
   try {
     localStorage.setItem(CONFIG.storageKey, summary);
@@ -252,10 +384,53 @@ function submitSmartForm(event) {
 
   showSuccess();
 
-  trackLead("qualified_lead");
-  trackLead("whatsapp_conversion");
+  trackLead("qualified_lead", {
+    status: "qualified",
+    score,
+    lead_quality: score >= 85 ? "hot" : score >= 70 ? "warm" : "cold",
+    restaurant: data.restaurant || "",
+    location: data.location || "",
+    package: data.package || ""
+  });
 
-  window.open(getWhatsAppUrl(summary), "_blank", "noopener,noreferrer");
+  trackCustom("QualifiedLead", {
+    score,
+    package: data.package || "",
+    messages: data.messages || "",
+    branches: data.branches || ""
+  });
+
+  openTrackedWhatsApp(summary, {
+    source: "smart_form_submit",
+    score,
+    qualified: true
+  });
+}
+
+function openTrackedWhatsApp(message, extra = {}) {
+  const clickId = `wa_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  const url = getWhatsAppUrl(message);
+
+  try {
+    localStorage.setItem("rawabat_last_whatsapp_click_id", clickId);
+  } catch (error) {}
+
+  trackLead("whatsapp_click", {
+    click_id: clickId,
+    ...extra
+  });
+
+  trackLead("whatsapp_conversion", {
+    click_id: clickId,
+    ...extra
+  });
+
+  trackCustom("WhatsAppClick", {
+    click_id: clickId,
+    ...extra
+  });
+
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 function handleScroll() {
@@ -270,7 +445,16 @@ function handleScroll() {
     pricing.getBoundingClientRect().top < innerHeight * 0.75
   ) {
     state.pricingViewed = true;
-    trackViewContent("pricing");
+
+    trackViewContent("pricing_view", {
+      intent: "high",
+      section: "pricing"
+    });
+
+    trackCustom("PricingView", {
+      intent: "high",
+      score: calculateLeadScore()
+    });
   }
 }
 
@@ -298,20 +482,35 @@ function initReveal() {
 }
 
 function initTrackingLinks() {
-  $$("[data-track-lead]").forEach((element) => {
-    element.addEventListener("click", () => {
-      trackLead("whatsapp_click");
+  const whatsappLinks = $$("a[href*='wa.me'], a[href*='whatsapp'], [data-track-lead]");
 
-      const specificLabel = element.dataset.trackLead;
-      if (specificLabel && specificLabel !== "whatsapp_click") {
-        trackLead(specificLabel);
+  whatsappLinks.forEach((element) => {
+    element.addEventListener("click", () => {
+      const label = element.dataset.trackLead || "whatsapp_link";
+      const href = element.getAttribute("href") || "";
+
+      trackLead("whatsapp_click", {
+        button_label: label,
+        href,
+        source: "link_click",
+        score: calculateLeadScore()
+      });
+
+      if (label && label !== "whatsapp_click") {
+        trackCustom("SpecificButtonClick", {
+          button_label: label,
+          href,
+          score: calculateLeadScore()
+        });
       }
     });
   });
 
   $$("[data-track-contact]").forEach((element) => {
     element.addEventListener("click", () => {
-      trackContact(element.dataset.trackContact || "contact_click");
+      trackContact(element.dataset.trackContact || "contact_click", {
+        score: calculateLeadScore()
+      });
     });
   });
 }
@@ -322,8 +521,19 @@ function initForm() {
 
   form.addEventListener("focusin", () => {
     if (!state.formStarted) {
-      trackContact("form_start");
       state.formStarted = true;
+
+      trackContact("form_start", {
+        step: 1,
+        score: calculateLeadScore()
+      });
+
+      trackCustom("FormStarted", {
+        step: 1,
+        score: calculateLeadScore()
+      });
+
+      trackFormStep(1);
     }
   });
 
@@ -340,6 +550,17 @@ function initForm() {
   $("#copyLeadSummaryBtn")?.addEventListener("click", copyLeadSummary);
 }
 
+function initPageTracking() {
+  trackViewContent("landing_view", {
+    section: "hero",
+    funnel_step: "landing"
+  });
+
+  trackCustom("LandingPageViewed", {
+    funnel: "clientflow_restaurants"
+  });
+}
+
 function init() {
   initMetaPixel();
   setHiddenTracking();
@@ -349,6 +570,7 @@ function init() {
   updateSmartProgress();
   updateLeadScore();
   handleScroll();
+  initPageTracking();
 
   addEventListener("scroll", handleScroll, { passive: true });
 }
