@@ -1,20 +1,204 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>الصفحة غير موجودة | Rawabat</title>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>404 | الصفحة غير موجودة - Rawabat</title>
+
+<meta name="robots" content="noindex, follow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-body{background:#050508;color:#fff;text-align:center;font-family:Cairo;padding:80px}
-a{display:inline-block;margin-top:20px;padding:12px 20px;background:#00d4aa;color:#000;border-radius:10px;text-decoration:none}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Cairo',sans-serif;
+background:
+radial-gradient(circle at top right,#00d4aa22,transparent 30%),
+radial-gradient(circle at bottom left,#ffb84d22,transparent 30%),
+#050508;
+color:#fff;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:24px;
+overflow:hidden;
+}
+
+.container{
+max-width:700px;
+width:100%;
+text-align:center;
+padding:60px 35px;
+border:1px solid rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.03);
+backdrop-filter:blur(14px);
+border-radius:28px;
+box-shadow:0 20px 60px rgba(0,0,0,.45);
+position:relative;
+overflow:hidden;
+}
+
+.glow{
+position:absolute;
+width:280px;
+height:280px;
+background:#00d4aa22;
+filter:blur(80px);
+border-radius:50%;
+top:-80px;
+right:-80px;
+z-index:0;
+}
+
+.content{
+position:relative;
+z-index:2;
+}
+
+.error-code{
+font-size:120px;
+font-weight:800;
+line-height:1;
+background:linear-gradient(90deg,#00d4aa,#ffb84d);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px;
+}
+
+h1{
+font-size:42px;
+margin-bottom:18px;
+font-weight:800;
+line-height:1.4;
+}
+
+p{
+font-size:20px;
+color:#cfcfcf;
+line-height:1.9;
+margin-bottom:35px;
+}
+
+.buttons{
+display:flex;
+gap:18px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 28px;
+border-radius:14px;
+font-weight:800;
+font-size:16px;
+text-decoration:none;
+transition:.3s ease;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:220px;
+}
+
+.btn-primary{
+background:linear-gradient(135deg,#00d4aa,#00b894);
+color:#000;
+box-shadow:0 10px 30px rgba(0,212,170,.35);
+}
+
+.btn-primary:hover{
+transform:translateY(-3px) scale(1.02);
+}
+
+.btn-secondary{
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.1);
+color:#fff;
+}
+
+.btn-secondary:hover{
+background:rgba(255,255,255,.12);
+}
+
+.small{
+margin-top:35px;
+font-size:14px;
+opacity:.7;
+}
+
+@media(max-width:768px){
+
+.error-code{
+font-size:90px;
+}
+
+h1{
+font-size:30px;
+}
+
+p{
+font-size:17px;
+}
+
+.container{
+padding:45px 24px;
+}
+
+.btn{
+width:100%;
+}
+
+}
+
 </style>
+
 </head>
 <body>
 
-<h1>🚫 الصفحة غير موجودة</h1>
-<p>لكن ممكن نحولك لعميل 😉</p>
+<div class="container">
 
-<a href="/">الرجوع للرئيسية</a><br>
-<a href="https://wa.me/201000045140">تواصل واتساب</a>
+<div class="glow"></div>
+
+<div class="content">
+
+<div class="error-code">404</div>
+
+<h1>الصفحة غير موجودة 🚫</h1>
+
+<p>
+يبدو أن الرابط الذي تبحث عنه غير متاح حالياً،
+لكن ما زال بإمكاننا مساعدتك في زيادة طلبات مطعمك وتحويل واتساب إلى ماكينة مبيعات تعمل 24/7.
+</p>
+
+<div class="buttons">
+
+<a href="https://getrawabat.com/" class="btn btn-primary">
+العودة إلى الرئيسية
+</a>
+
+<a href="https://wa.me/201000045140" class="btn btn-secondary">
+تواصل واتساب الآن
+</a>
+
+</div>
+
+<div class="small">
+Rawabat © 2026 — AI WhatsApp Sales Systems
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
