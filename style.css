@@ -1678,3 +1678,190 @@ ul {
     font-size: 1rem;
   }
 }
+
+/* =========================================================
+   NEW SEO + SMART FORM + MARKET PAGES
+========================================================= */
+
+.seo-content {
+  position: relative;
+}
+
+.seo-content .section-head {
+  max-width: 980px;
+}
+
+.seo-content p + p {
+  margin-top: 18px;
+}
+
+.proof-mockup {
+  height: 100%;
+}
+
+.smart-form-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.smart-progress {
+  margin-bottom: 28px;
+}
+
+.smart-progress__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.smart-progress__top span {
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.smart-progress__top strong {
+  color: var(--color-teal);
+  font-family: var(--font-latin);
+}
+
+.smart-progress__track {
+  width: 100%;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+}
+
+.smart-progress__bar {
+  width: 25%;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    135deg,
+    var(--color-gold),
+    var(--color-teal)
+  );
+  transition: width .35s ease;
+}
+
+.smart-steps {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.smart-step-pill {
+  border-radius: 18px;
+  padding: 12px;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--color-muted);
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+  transition: .25s ease;
+}
+
+.smart-step-pill.is-active {
+  color: #000;
+  background: linear-gradient(
+    135deg,
+    var(--color-teal),
+    #8dffe8
+  );
+  border-color: transparent;
+}
+
+.smart-step {
+  display: none;
+}
+
+.smart-step.is-active {
+  display: block;
+}
+
+.smart-step h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.smart-step > p {
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.smart-actions {
+  margin-top: 28px;
+}
+
+.media-card {
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.section--markets .feature-card {
+  text-align: center;
+}
+
+.section--markets .feature-card .btn {
+  margin-top: 8px;
+}
+
+.section--faq {
+  position: relative;
+}
+
+.section--reviews {
+  position: relative;
+}
+
+.footer__links {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer__copyright {
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+
+  .smart-steps {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .smart-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .smart-step-pill {
+    padding: 14px;
+  }
+
+  .smart-progress {
+    margin-bottom: 22px;
+  }
+
+  .smart-step h3 {
+    font-size: 1.25rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .smart-progress__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
