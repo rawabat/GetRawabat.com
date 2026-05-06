@@ -4,7 +4,7 @@
   <!-- الصفحة الرئيسية -->
   <url>
     <loc>https://getrawabat.com/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- صفحة السعودية -->
   <url>
     <loc>https://getrawabat.com/saudi-whatsapp-bot/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -20,17 +20,40 @@
   <!-- صفحة الرياض -->
   <url>
     <loc>https://getrawabat.com/riyadh-whatsapp-bot/</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <!-- صفحة جدة -->
   <url>
     <loc>https://getrawabat.com/jeddah-whatsapp-bot/</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+  </url>
+
+  <!-- صور وشرح النظام -->
+  <url>
+    <loc>https://getrawabat.com/dashboard.png</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.40</priority>
+  </url>
+
+  <url>
+    <loc>https://getrawabat.com/chat.png</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.40</priority>
+  </url>
+
+  <!-- GitHub Pages Verification -->
+  <url>
+    <loc>https://getrawabat.com/google050decccfb7f65f2.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.10</priority>
   </url>
 
 </urlset>
