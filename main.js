@@ -578,3 +578,183 @@ function init() {
 document.readyState === "loading"
   ? document.addEventListener("DOMContentLoaded", init)
   : init();
+
+/* =========================================================
+   EXTRA SEO + UX + CRO ENHANCEMENTS
+========================================================= */
+
+function initScrollDepthTracking() {
+  let tracked25 = false;
+  let tracked50 = false;
+  let tracked75 = false;
+  let tracked100 = false;
+
+  function handleDepth() {
+    const scrollTop = window.scrollY;
+    const docHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    if (docHeight <= 0) return;
+
+    const percent = Math.round((scrollTop / docHeight) * 100);
+
+    if (percent >= 25 && !tracked25) {
+      tracked25 = true;
+
+      trackCustom("ScrollDepth", {
+        depth: 25
+      });
+    }
+
+    if (percent >= 50 && !tracked50) {
+      tracked50 = true;
+
+      trackCustom("ScrollDepth", {
+        depth: 50
+      });
+    }
+
+    if (percent >= 75 && !tracked75) {
+      tracked75 = true;
+
+      trackCustom("ScrollDepth", {
+        depth: 75
+      });
+    }
+
+    if (percent >= 95 && !tracked100) {
+      tracked100 = true;
+
+      trackCustom("ScrollDepth", {
+        depth: 100
+      });
+    }
+  }
+
+  window.addEventListener("scroll", handleDepth, {
+    passive: true
+  });
+}
+
+function initExitIntent() {
+  let shown = false;
+
+  document.addEventListener("mouseout", (event) => {
+    if (shown) return;
+
+    if (event.clientY <= 0) {
+      shown = true;
+
+      trackCustom("ExitIntentTriggered", {
+        score: calculateLeadScore()
+      });
+
+      const shouldOpen = confirm(
+        "🔥 قبل ما تمشي...\n\nهل تريد مشاهدة Demo سريع لـ ClientFlow على واتساب؟"
+      );
+
+      if (shouldOpen) {
+        openTrackedWhatsApp(
+          "مرحبًا، أريد مشاهدة Demo سريع لـ ClientFlow",
+          {
+            source: "exit_intent"
+          }
+        );
+      }
+    }
+  });
+}
+
+function initSEOInteractions() {
+  $$("details").forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (item.open) {
+        const question =
+          item.querySelector("summary")?.textContent || "";
+
+        trackCustom("FAQOpened", {
+          question
+        });
+      }
+    });
+  });
+}
+
+function initMarketTracking() {
+  const path = window.location.pathname;
+
+  let market = "global";
+
+  if (path.includes("saudi")) {
+    market = "saudi";
+  }
+
+  if (path.includes("riyadh")) {
+    market = "riyadh";
+  }
+
+  if (path.includes("jeddah")) {
+    market = "jeddah";
+  }
+
+  trackCustom("MarketPageView", {
+    market
+  });
+}
+
+function initStickyCTA() {
+  const sticky = $(".sticky-cta");
+
+  if (!sticky) return;
+
+  let lastScroll = 0;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const current = window.scrollY;
+
+      if (current > 300) {
+        sticky.style.transform = "translateY(0)";
+        sticky.style.opacity = "1";
+      }
+
+      if (current < 120) {
+        sticky.style.transform = "translateY(120%)";
+        sticky.style.opacity = "0";
+      }
+
+      lastScroll = current;
+    },
+    {
+      passive: true
+    }
+  );
+}
+
+function initPerformanceTracking() {
+  window.addEventListener("load", () => {
+    const timing = performance.now();
+
+    trackCustom("PagePerformance", {
+      load_time_ms: Math.round(timing)
+    });
+  });
+}
+
+/* =========================================================
+   APPEND TO INIT
+========================================================= */
+
+const oldInit = init;
+
+init = function () {
+  oldInit();
+
+  initScrollDepthTracking();
+  initExitIntent();
+  initSEOInteractions();
+  initMarketTracking();
+  initStickyCTA();
+  initPerformanceTracking();
+};
