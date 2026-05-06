@@ -1,14 +1,18 @@
 User-agent: *
 Allow: /
 
-# Facebook Crawlers
+# =========================
+# Facebook / Meta Crawlers
+# =========================
 User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Facebot
 Allow: /
 
+# =========================
 # Social Media Crawlers
+# =========================
 User-agent: Twitterbot
 Allow: /
 
@@ -18,7 +22,9 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
+# =========================
 # Google Crawlers
+# =========================
 User-agent: Googlebot
 Allow: /
 
@@ -28,7 +34,12 @@ Allow: /
 User-agent: AdsBot-Google
 Allow: /
 
+User-agent: Googlebot-News
+Allow: /
+
+# =========================
 # AI Crawlers
+# =========================
 User-agent: GPTBot
 Allow: /
 
@@ -41,5 +52,15 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
+# =========================
+# Performance
+# =========================
+Crawl-delay: 1
+
+# =========================
 # Sitemap
+# =========================
 Sitemap: https://getrawabat.com/sitemap.xml
