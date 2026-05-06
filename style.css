@@ -1865,3 +1865,59 @@ ul {
   }
 
 }
+
+/* Saudi page layout fixes */
+body {
+  overflow-x: hidden;
+}
+
+.main-content {
+  padding-top: 128px;
+}
+
+.site-nav {
+  top: 38px;
+  z-index: 80;
+}
+
+.urgency-bar {
+  z-index: 100;
+}
+
+.nav__inner {
+  min-height: 58px;
+}
+
+.hero {
+  padding-top: 40px;
+}
+
+.section {
+  scroll-margin-top: 140px;
+}
+
+.sticky-cta {
+  z-index: 90;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 118px;
+  }
+
+  .site-nav {
+    top: 38px;
+  }
+
+  .hero {
+    padding-top: 28px;
+  }
+
+  .nav__links {
+    display: none !important;
+  }
+
+  .sticky-cta {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+}
